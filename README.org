@@ -80,6 +80,7 @@ algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQ
 
 
 
+#+begin_comment
 * Infinitud de los primos
 
 + [[./src/Primos/Infinitud_de_los_primos.lean][Infinitud de los primos]]
@@ -103,4 +104,4 @@ algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQ
 
 + [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean][Introducción a la metaprogramación (6)]]
 #+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean" src lean
-
+#+end_comment
