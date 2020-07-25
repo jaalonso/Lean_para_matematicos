@@ -1,0 +1,106 @@
+#+TITLE: Lean para matemáticos
+#+OPTIONS: ^:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./estilo.css" />
+#+LATEX_CLASS: book-noparts
+#+LATEX_CLASS_OPTIONS: [a4paper,12pt,twoside]
+
+* Contenido                                                             :TOC:
+- [[#introducción][Introducción]]
+- [[#infinitud-de-los-primos][Infinitud de los primos]]
+- [[#metaprogramación][Metaprogramación]]
+- [[#introducción-a-las-matemáticas-en-lean][Introducción a las matemáticas en Lean]]
+- [[#lógica][Lógica]]
+- [[#números][Números]]
+- [[#conjuntos][Conjuntos]]
+- [[#estructuras-y-clases][Estructuras y clases]]
+- [[#estructuras-algebraicas][Estructuras algebraicas]]
+
+* Introducción
+
+En este trabajo se recopilan las teoría mostradas en el [[https://leanprover-community.github.io/lftcm2020/][LftCM2020: Lean for the
+Curious Mathematician 2020]]. Los vídeos de las sesiones se encuentran en
+[[https://www.youtube.com/playlist?list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N][estalista de reproducción]].
+ 
+# ** Creación del proyecto
+# 
+# + Se crea con 
+#   : leanproject new LftCM2020
+# 
+# + Crea el directorio =LftCM2020= cuya estructura se ve con
+#   : tree -d
+
+* Infinitud de los primos
+
++ [[./src/Primos/Infinitud_de_los_primos.lean][Infinitud de los primos]]
+#+INCLUDE: "./src/Primos/Infinitud_de_los_primos.lean" src lean
+
+* Metaprogramación
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean][Introducción a la metaprogramación (1)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean][Introducción a la metaprogramación (2)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean][Introducción a la metaprogramación (3)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean][Introducción a la metaprogramación (4)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean][Introducción a la metaprogramación (5)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean][Introducción a la metaprogramación (6)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean" src lean
+
+* Introducción a las matemáticas en Lean
+
+En esta sesión [[https://www.imo.universite-paris-saclay.fr/~pmassot/en/][Patrick Massot]] presenta cómo demostrar teoremas en Lean. Está
+disponible el [[https://youtu.be/lw8EfTmWzRU][vídeo]] y las [[https://www.imo.universite-paris-saclay.fr/~pmassot/basics.pdf][transparencias]].
+
++ [[./src/Introduccion/Calculo_de_tipos_con_Lean.lean][Cálculo de tipos con Lean]]
+#+INCLUDE: "./src/Introduccion/Calculo_de_tipos_con_Lean.lean" src lean
+
+* Lógica
+
+En esta sesión [[http://www.andrew.cmu.edu/user/avigad/][Jeremy Avigad]] presenta el razonamiento lógico con Lean. Está
+disponible el [[https://youtu.be/WGwKefZ8KFo][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/exercises_sources/tuesday/afternoon/logic.lean][teoría]].
+
++ [[./src/Logica/Logica.lean][Lógica]]
+#+INCLUDE: "./src/Logica/Logica.lean" src lean
+
+* Números
+
+En esta sesión [[https://robertylewis.com/][Robert Y. Lewis]] presenta demostraciones sobre números en
+Lean. Está disponible el [[https://youtu.be/iEs2U_kzYy4][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/solutions/tuesday/afternoon/numbers.lean][teoría]].
+
++ [[./src/Numeros/Numeros.lean][Números]]
+#+INCLUDE: "./src/Numeros/Numeros.lean" src lean
+
+* Conjuntos
+
+En esta sesión [[http://www.andrew.cmu.edu/user/avigad/][Jeremy Avigad]] presenta cómo razonar sobre conjuntos con
+Lean. Está disponible el [[https://youtu.be/qlJrCtYiEkI][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/exercises_sources/tuesday/afternoon/sets.lean][teoría]].
+
++ [[./src/Conjuntos/Conjuntos.lean][Conjuntos]]
+#+INCLUDE: "./src/Conjuntos/Conjuntos.lean" src lean
+
+* Estructuras y clases
+
+En esta sesión [[https://florisvandoorn.com/][Floris van Doorn]] presenta cómo razonar sobre conjuntos con
+Lean. Está disponible el [[https://youtu.be/xYenPIeX6MY][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/exercises_sources/wednesday/morning/structures.lean][teoría]].
+
++ [[./src/Estructuras/Estructuras.lean][Estructuras]]
+#+INCLUDE: "./src/Estructuras/Estructuras.lean" src lean
+
+* Estructuras algebraicas
+
+En esta sesión [[https://www.imperial.ac.uk/people/k.buzzard][Kevin Buzzard]] presenta cómo trabajar en Lean con estructuras
+algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQPAtiTY][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/exercises_sources/wednesday/afternoon/algebraic_hierarchy.lean][teoría]].
+
++ [[./src/Estructuras_algebraicas.lean][Estructuras algebraicas]]
+#+INCLUDE: "./src/Estructuras_algebraicas.lean" src lean
+
+
+
