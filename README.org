@@ -4,8 +4,16 @@
 #+LATEX_CLASS: book-noparts
 #+LATEX_CLASS_OPTIONS: [a4paper,12pt,twoside]
 
-# * Contenido                                                             :TOC:
+* Contenido                                                             :TOC:
 - [[#introducción][Introducción]]
+- [[#introducción-a-las-matemáticas-en-lean][Introducción a las matemáticas en Lean]]
+- [[#lógica][Lógica]]
+- [[#números][Números]]
+- [[#conjuntos][Conjuntos]]
+- [[#estructuras-y-clases][Estructuras y clases]]
+- [[#estructuras-algebraicas][Estructuras algebraicas]]
+- [[#infinitud-de-los-primos][Infinitud de los primos]]
+- [[#metaprogramación][Metaprogramación]]
 
 * Introducción
 
