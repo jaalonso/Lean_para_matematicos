@@ -6,14 +6,14 @@
 
 * Contenido                                                             :TOC:
 - [[#introducción][Introducción]]
-- [[#infinitud-de-los-primos][Infinitud de los primos]]
-- [[#metaprogramación][Metaprogramación]]
 - [[#introducción-a-las-matemáticas-en-lean][Introducción a las matemáticas en Lean]]
 - [[#lógica][Lógica]]
 - [[#números][Números]]
 - [[#conjuntos][Conjuntos]]
 - [[#estructuras-y-clases][Estructuras y clases]]
 - [[#estructuras-algebraicas][Estructuras algebraicas]]
+- [[#infinitud-de-los-primos][Infinitud de los primos]]
+- [[#metaprogramación][Metaprogramación]]
 
 * Introducción
 
@@ -28,31 +28,6 @@ Curious Mathematician 2020]]. Los vídeos de las sesiones se encuentran en
 # 
 # + Crea el directorio =LftCM2020= cuya estructura se ve con
 #   : tree -d
-
-* Infinitud de los primos
-
-+ [[./src/Primos/Infinitud_de_los_primos.lean][Infinitud de los primos]]
-#+INCLUDE: "./src/Primos/Infinitud_de_los_primos.lean" src lean
-
-* Metaprogramación
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean][Introducción a la metaprogramación (1)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean" src lean
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean][Introducción a la metaprogramación (2)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean" src lean
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean][Introducción a la metaprogramación (3)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean" src lean
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean][Introducción a la metaprogramación (4)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean" src lean
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean][Introducción a la metaprogramación (5)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean" src lean
-
-+ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean][Introducción a la metaprogramación (6)]]
-#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean" src lean
 
 * Introducción a las matemáticas en Lean
 
@@ -103,4 +78,29 @@ algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQ
 #+INCLUDE: "./src/Estructuras_algebraicas.lean" src lean
 
 
+
+
+* Infinitud de los primos
+
++ [[./src/Primos/Infinitud_de_los_primos.lean][Infinitud de los primos]]
+#+INCLUDE: "./src/Primos/Infinitud_de_los_primos.lean" src lean
+* Metaprogramación
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean][Introducción a la metaprogramación (1)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean][Introducción a la metaprogramación (2)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_2.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean][Introducción a la metaprogramación (3)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_3.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean][Introducción a la metaprogramación (4)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_4.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean][Introducción a la metaprogramación (5)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_5.lean" src lean
+
++ [[./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean][Introducción a la metaprogramación (6)]]
+#+INCLUDE: "./src/Metaprogramacion/Introduccion_a_la_metaprogramacion_6.lean" src lean
 
