@@ -117,8 +117,7 @@ include h₁ h₂
 -- Ejercicio. Calcular el tipo de h₁
 -- ----------------------------------------------------------------------
 
--- Se calcula quitando el comentario y colocando el cursor sobre check
---    #check h₁
+#check h₁
 
 -- Comentario: Al colocar el cursor sobre chck se obtiene
 --    h₁ : a ≤ b
@@ -155,8 +154,8 @@ no goals
 -/
 
 -- Comentario. La táctica (apply h) equipara la conclusión de h con el
--- objetivo y sustituye el objetivo por hipótesis de h. Por ejemplo, si h es
--- (P → Q → R), el objetivo es S y existe una f tal que f(R) = S en
+-- objetivo y sustituye el objetivo por hipótesis de h. Por ejemplo, si
+-- h es (P → Q → R), el objetivo es S y existe una f tal que f(R) = S en
 -- entonces los nuevos objetivos son f(P) y f(Q).
 
 -- 2ª demostración
@@ -273,7 +272,8 @@ section segunda
 -- tal que (fn_ub f a) afirma que a es una cota superior de f.
 -- ----------------------------------------------------------------------
 
-def fn_ub (f : ℝ → ℝ) (a : ℝ) : Prop := ∀ x, f x ≤ a
+def fn_ub (f : ℝ → ℝ) (a : ℝ) : Prop :=
+∀ x, f x ≤ a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar que
@@ -284,7 +284,7 @@ def fn_ub (f : ℝ → ℝ) (a : ℝ) : Prop := ∀ x, f x ≤ a
 variables {f g : ℝ → ℝ} {a b : ℝ}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si a es una cota superior de f y g es una
+-- Ejercicio. Demostrar que si a es una cota superior de f y b es una
 -- cota superior de g, entonces a + b es una cota superior de f + g.
 -- ----------------------------------------------------------------------
 
@@ -332,7 +332,7 @@ no goals
 
 -- Comentarios:
 -- 1. La táctica (intro x) cuando el objetivo es universal aplica la
---    regla de introdución del cuantificador universal; es decir, si el
+--    regla de introducción del cuantificador universal; es decir, si el
 --    objetivo es (∀ y : α, P y) entonces añade la hipótesis (x : α) y
 --    cambia el objetivo a (P x).
 -- 2. Por la definición de fn_ub, el primer objetivo es universal.
@@ -353,7 +353,7 @@ end segunda
 ------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio. emostrar que existe un número real entre 2 y 3.
+-- Ejercicio. Demostrar que existe un número real entre 2 y 3.
 -- ----------------------------------------------------------------------
 
 example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
@@ -375,7 +375,7 @@ no goals
 
 -- Comentarios:
 -- 1. La táctica (use e) cuando el objetivo es existencial aplica la
---    regla de introducción del cuantificador exsitencial; es decir, si
+--    regla de introducción del cuantificador existencial; es decir, si
 --    el objetivo es (∃ x, P x) lo sustituye por (P e).
 -- 2. La tática norm_num aplica normalización numérica.
 
