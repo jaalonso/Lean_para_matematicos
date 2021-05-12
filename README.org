@@ -19,13 +19,13 @@
 
 En este trabajo se recopilan las teoría mostradas en el [[https://leanprover-community.github.io/lftcm2020/][LftCM2020: Lean for the
 Curious Mathematician 2020]]. Los vídeos de las sesiones se encuentran en
-[[https://www.youtube.com/playlist?list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N][estalista de reproducción]].
- 
+[[https://www.youtube.com/playlist?list=PLlF-CfQhukNlxexiNJErGJd2dte_J1t1N][esta lista de reproducción]].
+
 # ** Creación del proyecto
-# 
-# + Se crea con 
+#
+# + Se crea con
 #   : leanproject new LftCM2020
-# 
+#
 # + Crea el directorio =LftCM2020= cuya estructura se ve con
 #   : tree -d
 
