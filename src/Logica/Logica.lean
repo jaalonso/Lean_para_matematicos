@@ -1,18 +1,6 @@
 import data.real.basic
 
 ------------------------------------------------------------------------
--- § Referencias                                                      --
-------------------------------------------------------------------------
-
--- Esta teoría de una adaptación de logic.lean de Avigad que se
--- encuentra en https://bit.ly/2OzX8ty
---
--- Sus referencias son
--- + "Mathematics in Lean" https://bit.ly/2OzX8ty
--- + "Theorem proving in Lean" http://bit.ly/37XcbVn
--- + "Lean Cheatsheet" https://bit.ly/3eGhBay
-
-------------------------------------------------------------------------
 -- § Introducción                                                     --
 ------------------------------------------------------------------------
 
@@ -31,9 +19,9 @@ import data.real.basic
 | false   | contradicción | falso           |                           |
 | true    | trivial       | verdadero       |                           |
 |---------+---------------+-----------------+---------------------------|
--/ 
+-/
 
--- Notas. 
+-- Notas.
 -- 1. Los *objetivos* en Lean son de la forma
 --       1 goal
 --       x y : ℕ,
@@ -44,7 +32,7 @@ import data.real.basic
 -- 2. La parte antes de ⊢ se llama el *contexto* o el *contexto local*.
 -- 3. Cada elemento del contexto se llama *hipótesis* o *hipótesis local*.
 -- 4. La parte después de ⊢ se llama la *conclusión del objetivo* o el
---    *objetivo*.  
+--    *objetivo*.
 
 -- Nota. Las *tácticas* de introducción o eliminación de conectivas son
 /-
@@ -72,63 +60,65 @@ import data.real.basic
 
 -- Nota: La estructura lógica puede estar oculta en las
 -- definiciones. Por ejemplo,
--- + `x ∣ y`   es existencial
--- + `s ⊆ t`   es universal
+-- + `x ∣ y` es existencial
+-- + `s ⊆ t` es universal
 
 ------------------------------------------------------------------------
 -- § Implicación y cuantificador universal                            --
 ------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Crear la sección primera 
+-- Ejercicio. Crear la sección primera
 -- ----------------------------------------------------------------------
 
 section primera
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir las siguientes variables:
--- + a, b, c y d como números reales. 
+-- + a, b, c y d como números reales.
 -- + h₁ como a ≤ b
 -- + h₂ como c ≤ d
 -- ----------------------------------------------------------------------
 
 
-variables   a b c d : ℝ
-variable    h₁ : a ≤ b
-variables   h₂ : c ≤ d
+variables a b c d : ℝ
+variable  h₁ : a ≤ b
+variables h₂ : c ≤ d
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de los siguientes términos 
+-- Ejercicio. Calcular el tipo de los siguientes términos
 --    @add_le_add
 --    @add_le_add _ _ a b
 --    @add_le_add _ _ a b c d h₁
 --    add_le_add h₁
 -- ----------------------------------------------------------------------
 
-#check @add_le_add
-#check @add_le_add _ _ a b
-#check @add_le_add _ _ a b c d h₁
-#check add_le_add h₁
+-- Se calcula quitando el comentario y colocando el cursor sobre check
+--    #check @add_le_add
+--    #check @add_le_add _ _ a b
+--    #check @add_le_add _ _ a b c d h₁
+--    #check add_le_add h₁
 
 -- Comentario: Al colocar el cursor sobre check se obtiene
--- + add_le_add : ∀ {α : Type u_1} [_inst_1 : ordered_add_comm_monoid α] 
+-- + add_le_add : ∀ {α : Type u_1} [_inst_1 : ordered_add_comm_monoid α]
 --                {a b c d : α}, a ≤ b → c ≤ d → a + c ≤ b + d
--- + add_le_add : ∀ {c d : ℝ}, a ≤ b → c ≤ d → a + c ≤ b + d 
+-- + add_le_add : ∀ {c d : ℝ}, a ≤ b → c ≤ d → a + c ≤ b + d
 -- + add_le_add h₁ : c ≤ d → a + c ≤ b + d
--- + add_le_add h₁ : ?M_1 ≤ ?M_2 → a + ?M_1 ≤ b + ?M_2 
+-- + add_le_add h₁ : ?M_1 ≤ ?M_2 → a + ?M_1 ≤ b + ?M_2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Incluir las hipótesis h₁ y h₂ hasta el final de la
--- sección. 
+-- sección.
 -- ----------------------------------------------------------------------
 
 include h₁ h₂
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de h₁ 
+-- Ejercicio. Calcular el tipo de h₁
 -- ----------------------------------------------------------------------
 
-#check h₁
+-- Se calcula quitando el comentario y colocando el cursor sobre check
+--    #check h₁
 
 -- Comentario: Al colocar el cursor sobre chck se obtiene
 --    h₁ : a ≤ b
@@ -232,7 +222,7 @@ begin
 end
 
 -- Comentario: La táctica assumption unifica el obketivo con una de las
--- hipótesis. 
+-- hipótesis.
 
 -- Prueba
 -- ======
@@ -258,13 +248,13 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección primera 
+-- Ejercicio. Cerrar la sección primera
 -- ----------------------------------------------------------------------
 
 end primera
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de h₁ 
+-- Ejercicio. Calcular el tipo de h₁
 -- ----------------------------------------------------------------------
 
 #check h₁
@@ -298,9 +288,9 @@ variables {f g : ℝ → ℝ} {a b : ℝ}
 -- cota superior de g, entonces a + b es una cota superior de f + g.
 -- ----------------------------------------------------------------------
 
-theorem fn_ub_add 
-  (hfa : fn_ub f a) 
-  (hgb : fn_ub g b) 
+theorem fn_ub_add
+  (hfa : fn_ub f a)
+  (hgb : fn_ub g b)
   : fn_ub (λ x, f x + g x) (a + b) :=
 begin
   intro x,
@@ -340,17 +330,17 @@ h : g x ≤ b
 no goals
 -/
 
--- Comentarios: 
+-- Comentarios:
 -- 1. La táctica (intro x) cuando el objetivo es universal aplica la
 --    regla de introdución del cuantificador universal; es decir, si el
 --    objetivo es (∀ y : α, P y) entonces añade la hipótesis (x : α) y
---    cambia el objetivo a (P x).  
+--    cambia el objetivo a (P x).
 -- 2. Por la definición de fn_ub, el primer objetivo es universal.
 -- 3. La táctica dsimp simplifica el objetivo usando definiciones.
 -- 4. La táctica (specialize h x) cuando h es universal aplica la regla
 --    de eliminación del cuantificador existencial; es decir si h es
 --    (∀ y, P y) la sustituye por (P x).
--- 5. En lugar de (specialize h1 x) se puede usar (have h2 := h1 x).  
+-- 5. En lugar de (specialize h1 x) se puede usar (have h2 := h1 x).
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Cerrar la sección segunda.
@@ -363,7 +353,7 @@ end segunda
 ------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio. emostrar que existe un número real entre 2 y 3. 
+-- Ejercicio. emostrar que existe un número real entre 2 y 3.
 -- ----------------------------------------------------------------------
 
 example : ∃ x : ℝ, 2 < x ∧ x < 3 :=
@@ -405,14 +395,14 @@ def fn_has_ub (f : ℝ → ℝ) := ∃ a, fn_ub f a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar que f y g son variables implícitas de funciones
--- de ℝ en ℝ. 
+-- de ℝ en ℝ.
 -- ----------------------------------------------------------------------
 
 variables {f g : ℝ → ℝ}
 
-example 
-  (ubf : fn_has_ub f) 
-  (ubg : fn_has_ub g) 
+example
+  (ubf : fn_has_ub f)
+  (ubg : fn_has_ub g)
   : fn_has_ub (λ x, f x + g x) :=
 begin
   cases ubf with a ha,
@@ -461,7 +451,7 @@ section cuarta
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar que f es una variable implícita de funciones de ℝ
--- en ℝ.  
+-- en ℝ.
 -- ----------------------------------------------------------------------
 
 variable {f : ℝ → ℝ}
@@ -472,8 +462,8 @@ variable {f : ℝ → ℝ}
 -- entonces f no tiene cota superior.
 -- ----------------------------------------------------------------------
 
-example 
-  (h : ∀ a, ∃ x, f x > a)  
+example
+  (h : ∀ a, ∃ x, f x > a)
   : ¬ fn_has_ub f :=
 begin
   intro ubf,
@@ -481,7 +471,7 @@ begin
   specialize h b,
   cases h with y hy,
   specialize hb y,
-  linarith, 
+  linarith,
 end
 
 -- Prueba
@@ -508,7 +498,7 @@ hy : f y > b
   >> specialize hb y,
 hb : f y ≤ b
 ⊢ false
-  >> linarith, 
+  >> linarith,
 no goals
 -/
 
@@ -532,7 +522,7 @@ section quinta
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar que x e y son variables implícitas de números
--- reales. 
+-- reales.
 -- ----------------------------------------------------------------------
 
 variables {x y : ℝ}
@@ -542,12 +532,12 @@ variables {x y : ℝ}
 --     x ≤ y
 --     ¬ y ≤ x
 -- entonces
---    x ≤ y ∧ x ≠ y 
+--    x ≤ y ∧ x ≠ y
 -- ----------------------------------------------------------------------
 
-example 
-  (h₀ : x ≤ y) 
-  (h₁ : ¬ y ≤ x) 
+example
+  (h₀ : x ≤ y)
+  (h₁ : ¬ y ≤ x)
   : x ≤ y ∧ x ≠ y :=
 begin
   split,
@@ -580,7 +570,7 @@ no goals
 -/
 
 -- Comentario. La táctica split si la conclusión es una conjunción
--- aplica la regla de introducción de la conjunción; es decir, si es 
+-- aplica la regla de introducción de la conjunción; es decir, si es
 -- (P ∧ Q) diferencia dos casos en el que la conclusión del primero es P
 -- y la del segundo es Q.
 
@@ -588,11 +578,11 @@ no goals
 -- Ejercicio. Demostrar que si
 --    x ≤ y ∧ x ≠ y
 -- entonces
---    ¬ y ≤ x 
+--    ¬ y ≤ x
 -- ----------------------------------------------------------------------
 
-example 
-  (h : x ≤ y ∧ x ≠ y) 
+example
+  (h : x ≤ y ∧ x ≠ y)
   : ¬ y ≤ x :=
 begin
   intro h1,
@@ -623,13 +613,13 @@ end quinta
 section sexta
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar que x e y son variables de números reales. 
+-- Ejercicio. Declarar que x e y son variables de números reales.
 -- ----------------------------------------------------------------------
 
 variables x y : ℝ
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de los siguientes términos 
+-- Ejercicio. Calcular el tipo de los siguientes términos
 --    le_or_gt 0 y
 --    @abs_of_nonneg
 --    @abs_of_neg
@@ -641,11 +631,11 @@ variables x y : ℝ
 
 -- Comentario: Al colocar el cursor sobre check se obtiene
 -- + le_or_gt 0 y : 0 ≤ y ∨ 0 > y
--- + abs_of_nonneg : 
---     ∀ {α : Type u_1} [_inst_1 : decidable_linear_ordered_add_comm_group α] 
+-- + abs_of_nonneg :
+--     ∀ {α : Type u_1} [_inst_1 : decidable_linear_ordered_add_comm_group α]
 --       {a : α}, 0 ≤ a → abs a = a
--- + abs_of_neg : 
---     ∀ {α : Type u_1} [_inst_1 : decidable_linear_ordered_add_comm_group α] 
+-- + abs_of_neg :
+--     ∀ {α : Type u_1} [_inst_1 : decidable_linear_ordered_add_comm_group α]
 --       {a : α}, a < 0 → abs a = -a [3 times]
 
 -- ---------------------------------------------------------------------
@@ -699,15 +689,15 @@ no goals
 -- Comentarios
 -- 1. La táctica (cases h with h1 h2) xuando h es una disyunción aplica
 --    la regla de eliminación de la disyunción; es decir, si (h : P ∨ Q)
---    cambia el objetrivo por dos; en el primero le añade la hipótesis 
+--    cambia el objetrivo por dos; en el primero le añade la hipótesis
 --    (h1 : P) y en el segundo (h2 : Q).
 -- 2. La táctica (rw h) reescribe el objetivo con el lema h.
 -- 3. La táctica left cuando la conclusión es una disyunción aplica la
 --    primera regla de introducción de la disyunción; es decir, si la
---    conclusión es (P ∨ Q) la cambia por P.   
+--    conclusión es (P ∨ Q) la cambia por P.
 -- 4. La táctica right cuando la conclusión es una disyunción aplica la
 --    segunda regla de introducción de la disyunción; es decir, si la
---    conclusión es (P ∨ Q) la cambia por Q.   
+--    conclusión es (P ∨ Q) la cambia por Q.
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Cerrar la sección sexta.
@@ -730,3 +720,8 @@ end sexta
 -- Basado en la teoría logic.lean de Jeremy Avigad que se
 -- encuentra en https://bit.ly/39c7pFO y se comenta en el vídeo
 -- "Logic in Lean" que se encuentra en https://youtu.be/WGwKefZ8KFo
+--
+-- Sus referencias son
+-- + "Mathematics in Lean" https://bit.ly/2OzX8ty
+-- + "Theorem proving in Lean" http://bit.ly/37XcbVn
+-- + "Lean Cheatsheet" https://bit.ly/3eGhBay
