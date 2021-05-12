@@ -387,11 +387,12 @@ section tercera
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir la función
---    fn_has_ub (ℝ → ℝ) → Pro
+--    fn_has_ub : (ℝ → ℝ) → Pro
 -- tal que (fn_has_ub f) afirma que f tiene cota superior.
 -- ----------------------------------------------------------------------
 
-def fn_has_ub (f : ℝ → ℝ) := ∃ a, fn_ub f a
+def fn_has_ub (f : ℝ → ℝ) :=
+∃ a, fn_ub f a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar que f y g son variables implícitas de funciones
@@ -503,10 +504,10 @@ no goals
 -/
 
 -- Comentarios:
--- 1. La táctica (intro h) cuando el obketivo es una negación aplica la
+-- 1. La táctica (intro h) cuando el objetivo es una negación aplica la
 --    regla de introducción de la negación; es decir, si el objetivo es ¬P
 --    entonces añade la hipótesis (h : P) y cambia el objetivo a false.
--- 2. la táctica lnarith aplica simplificación con la aritmética lineal.
+-- 2. La táctica linarith aplica simplificación con la aritmética lineal.
 
 end cuarta
 
@@ -687,9 +688,9 @@ no goals
 -/
 
 -- Comentarios
--- 1. La táctica (cases h with h1 h2) xuando h es una disyunción aplica
+-- 1. La táctica (cases h with h1 h2) cuando h es una disyunción aplica
 --    la regla de eliminación de la disyunción; es decir, si (h : P ∨ Q)
---    cambia el objetrivo por dos; en el primero le añade la hipótesis
+--    cambia el objetivo por dos; en el primero le añade la hipótesis
 --    (h1 : P) y en el segundo (h2 : Q).
 -- 2. La táctica (rw h) reescribe el objetivo con el lema h.
 -- 3. La táctica left cuando la conclusión es una disyunción aplica la
