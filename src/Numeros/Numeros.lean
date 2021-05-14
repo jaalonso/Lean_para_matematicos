@@ -224,6 +224,9 @@ no goals
 
 variable n : ℕ
 
+-- 1ª demostración
+-- ===============
+
 example
   (hn : nat.prime n)
   : 1 / (n : ℝ) < 1 :=
@@ -274,8 +277,8 @@ no goals
 --    + nat.prime.one_lt : nat.prime n → 1 < n
 --    + nat.prime.pos : nat.prime n → 0 < n
 
-
-
+-- 2ª demostración
+-- ===============
 
 example
   (hn : nat.prime n)
@@ -398,7 +401,7 @@ end
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Sean p, q y r números naturales tales que (r < p + 2 - p).
--- Demostrar que z (como entero) es menor que 5.
+-- Demostrar que r (como entero) es menor que 5.
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
@@ -489,7 +492,7 @@ open padic_val_rat
 --    padic_val_rat x ↑z = ↑((multiplicity ↑x z).get _)
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Sean p y n números naturales y z un núemro entero.
+-- Ejercicio. Sean p y n números naturales y z un número entero.
 -- Demostrar que si p es un número primo y p^n divide a z, entonces
 --    padic_norm p z ≤ ↑p ^ (-n : ℤ)
 -- ----------------------------------------------------------------------
@@ -586,12 +589,12 @@ notation `|`x`|` := abs x
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir la función
---     seq_limit (ℕ → ℝ) → ℝ → Prop
+--     seq_limit : (ℕ → ℝ) → ℝ → Prop
 -- tal que (seq_limit u l) afirma que l es el límite de la sucesión u.
 -- ----------------------------------------------------------------------
 
-def seq_limit (u : ℕ → ℝ) (l : ℝ) : Prop :=
-∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| ≤ ε
+def seq_limit : (ℕ → ℝ) → ℝ → Prop :=
+λ u l, ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| ≤ ε
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que el límite de la sucesión (n+1)/n es 1.
