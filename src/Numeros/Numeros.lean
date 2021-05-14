@@ -8,9 +8,8 @@ import data.padics
 ------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo del 3. 
+-- Ejercicio. Calcular el tipo del 3.
 -- ----------------------------------------------------------------------
-
 
 #check 3
 
@@ -19,7 +18,7 @@ import data.padics
 -- que indica que 3 es un número natural.
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo del (3 : ℤ). 
+-- Ejercicio. Calcular el tipo del (3 : ℤ).
 -- ----------------------------------------------------------------------
 
 
@@ -101,7 +100,7 @@ by norm_num
 -- 1ª demostración
 -- ===============
 
-example 
+example
   (a b c : ℕ)
   (h : (b : ℤ) + a < c + a)
   : b < c :=
@@ -136,17 +135,17 @@ h : b < c
 no goals
 -/
 
--- Comentarios: 
+-- Comentarios:
 -- 1. Se han usado los lemas
---    + sub_lt_sub_iff_right : a - c < b - c ↔ a < b 
---    + add_sub_cancel : a + b - b = a 
+--    + sub_lt_sub_iff_right : a - c < b - c ↔ a < b
+--    + add_sub_cancel : a + b - b = a
 -- 2. La táctica (norma_cast at h) elimina las conversiones de la
 --    hipótesis h.
- 
+
 -- 2ª demostración
 -- ===============
 
-example 
+example
   (a b c : ℕ)
   (h : (b : ℤ) + a < c + a)
   : b < c :=
@@ -177,14 +176,14 @@ h : ↑b < ↑c
 no goals
 -/
 
--- Comentarios: 
+-- Comentarios:
 -- 1. La táctica (exact_mod_cast h) normaliza el objetivo y lo resuelve
 --    con exact.
 
 -- 2ª demostración
 -- ===============
 
-example 
+example
   (a b c : ℕ)
   (h : (b : ℤ) + a < c + a)
   : b < c :=
@@ -215,12 +214,12 @@ h : ↑b < ↑c
 no goals
 -/
 
--- Comentarios: 
+-- Comentarios:
 -- 1. La táctica assumption_cast unifica el objetivo con una de las
 --    hipótesis eliminando la conversión de tipos.
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si n es un número primo, entonces 
+-- Ejercicio. Demostrar que si n es un número primo, entonces
 --    1 / n < 1
 -- ----------------------------------------------------------------------
 
@@ -272,9 +271,9 @@ no goals
 
 -- Comentarios:
 -- 1. Se han usado los lemas
---    + one_div_lt : 0 < a → 0 < b → (1 / a < b ↔ 1 / b < a) 
+--    + one_div_lt : 0 < a → 0 < b → (1 / a < b ↔ 1 / b < a)
 --    + nat.prime.one_lt : nat.prime n → 1 < n
---    + nat.prime.pos : nat.prime n → 0 < n 
+--    + nat.prime.pos : nat.prime n → 0 < n
 
 
 
@@ -293,7 +292,7 @@ begin
 end
 
 -- Comentario: La táctica (apply_mod_cast h) aplica h con conversiones
--- de tipos. 
+-- de tipos.
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que en los cuerpos totalmente ordenados,
@@ -316,8 +315,8 @@ by norm_num
 -- ----------------------------------------------------------------------
 
 example
-  (x : ℝ) 
-  (hx : x < 50*50) 
+  (x : ℝ)
+  (hx : x < 50*50)
   : x < 25*100 :=
 begin
   norm_num at hx ⊢,
@@ -346,9 +345,9 @@ no goals
 -- real) es menor que 25*100, entonces x es menor que 25*100.
 -- ----------------------------------------------------------------------
 
-example 
-  (x : ℤ) 
-  (hx : (x : ℝ) < 25*100) 
+example
+  (x : ℤ)
+  (hx : (x : ℝ) < 25*100)
   : x < 25*100 :=
 begin
   assumption_mod_cast,
@@ -359,9 +358,9 @@ end
 -- real) es menor que 2500, entonces x es menor que 25*100.
 -- ----------------------------------------------------------------------
 
-example 
-  (x : ℤ) 
-  (hx : (x : ℝ) < 2500)     
+example
+  (x : ℤ)
+  (hx : (x : ℝ) < 2500)
   : x < 25*100 :=
 begin
   norm_num,
@@ -386,29 +385,29 @@ no goals
 -- Ejercicio. Sean p, q y r números naturales. Demostrar que si
 --    r < p - q
 --    q ≤ p
--- entonces r (como número real) es menor que p - q. 
+-- entonces r (como número real) es menor que p - q.
 -- ----------------------------------------------------------------------
 
-example 
-  (p q r : ℕ) 
-  (h : r < p - q) 
-  (hpq : q ≤ p) 
+example
+  (p q r : ℕ)
+  (h : r < p - q)
+  (hpq : q ≤ p)
   : (r : ℝ) < p - q :=
 begin
   exact_mod_cast h,
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Sean p, q y r números naturales tales que (r < p + 2 - p).  
+-- Ejercicio. Sean p, q y r números naturales tales que (r < p + 2 - p).
 -- Demostrar que z (como entero) es menor que 5.
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
 -- ===============
 
-example 
-  (p q r : ℕ) 
-  (hr : r < p + 2 - p) 
+example
+  (p q r : ℕ)
+  (hr : r < p + 2 - p)
   : (r : ℤ) < 5 :=
 begin
   have : p ≤ p + 2, by linarith,
@@ -435,9 +434,9 @@ hr : ↑r < ↑p + 2 - ↑p
 -- 2ª demostración
 -- ===============
 
-example 
-  (p q r : ℕ) 
-  (hr : r < p + 2 - p) 
+example
+  (p q r : ℕ)
+  (hr : r < p + 2 - p)
   : (r : ℤ) < 5 :=
 begin
   norm_num at hr,
@@ -473,13 +472,13 @@ no goals
 open padic_val_rat
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de los siguentes lemas 
---    fpow_le_of_le 
+-- Ejercicio. Calcular el tipo de los siguentes lemas
+--    fpow_le_of_le
 --    fpow_nonneg_of_nonneg
 --    padic_val_rat_of_int
 -- ----------------------------------------------------------------------
 
-#check fpow_le_of_le 
+#check fpow_le_of_le
 #check fpow_nonneg_of_nonneg
 #check padic_val_rat_of_int
 
@@ -487,7 +486,7 @@ open padic_val_rat
 -- + fpow_le_of_le : 1 ≤ x → ∀ {a b : ℤ}, a ≤ b → x ^ a ≤ x ^ b
 -- + fpow_nonneg_of_nonneg : 0 ≤ x → ∀ (z : ℤ), 0 ≤ x ^ z
 -- + padic_val_rat_of_int :
---    ∀ (z : ℤ) (hp : x ≠ 1) (hz : z ≠ 0), 
+--    ∀ (z : ℤ) (hp : x ≠ 1) (hz : z ≠ 0),
 --    padic_val_rat x ↑z = ↑((multiplicity ↑x z).get _)
 
 -- ---------------------------------------------------------------------
@@ -496,11 +495,11 @@ open padic_val_rat
 --    padic_norm p z ≤ ↑p ^ (-n : ℤ)
 -- ----------------------------------------------------------------------
 
-example 
-  {p n : ℕ} 
-  (hp : p.prime) 
-  {z : ℤ} 
-  (hd : ↑(p^n) ∣ z) 
+example
+  {p n : ℕ}
+  (hp : p.prime)
+  {z : ℤ}
+  (hd : ↑(p^n) ∣ z)
   : padic_norm p z ≤ ↑p ^ (-n : ℤ) :=
 begin
   have aux_lemma : ∀ inst, (n : ℤ) ≤ (multiplicity ↑p z).get inst,
@@ -509,7 +508,7 @@ begin
     rw [← enat.coe_le_coe, enat.coe_get],
     apply multiplicity.le_multiplicity_of_pow_dvd,
     assumption_mod_cast },
-  unfold padic_norm, 
+  unfold padic_norm,
   split_ifs with hz hz,
   { apply fpow_nonneg_of_nonneg,
     exact_mod_cast le_of_lt hp.pos },
@@ -527,13 +526,13 @@ end
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si p y q son coprimos, entonces existen
--- enteros u y v tales que 
---    u*p+v*q = 1   
+-- enteros u y v tales que
+--    u*p+v*q = 1
 -- ----------------------------------------------------------------------
 
-example 
-  (p q : ℕ) 
-  (h : nat.coprime p q) 
+example
+  (p q : ℕ)
+  (h : nat.coprime p q)
   : ∃ u v : ℤ, u*p+v*q = 1 :=
 begin
   have := nat.gcd_eq_gcd_ab,
@@ -608,31 +607,31 @@ begin
   have n_pos : 0 < n,
   { calc 0 < nat_ceil (1/ε) : _
        ... ≤ n : _,
-    { rw lt_nat_ceil, 
-      simp, 
+    { rw lt_nat_ceil,
+      simp,
       assumption },
     { assumption } },
-  rw [abs_of_nonneg, 
-      sub_le_iff_le_add, 
-      div_le_iff, 
-      add_mul, 
+  rw [abs_of_nonneg,
+      sub_le_iff_le_add,
+      div_le_iff,
+      add_mul,
       one_mul,
-      add_comm _ (n : ℝ), 
+      add_comm _ (n : ℝ),
       add_le_add_iff_left],
   { calc 1 = ε * (1/ε) : _
        ... ≤ ε * nat_ceil (1/ε) : _
        ... ≤ ε * n : _,
-    { symmetry, 
-      apply mul_one_div_cancel, 
+    { symmetry,
+      apply mul_one_div_cancel,
       linarith },
-    { rw mul_le_mul_left ε_pos, 
+    { rw mul_le_mul_left ε_pos,
       apply le_nat_ceil },
-    { rw mul_le_mul_left ε_pos, 
+    { rw mul_le_mul_left ε_pos,
       exact_mod_cast hn } },
   { assumption_mod_cast },
   { field_simp,
-    apply one_le_div_of_le; 
-    norm_cast; 
+    apply one_le_div_of_le;
+    norm_cast;
     linarith }
 end
 
