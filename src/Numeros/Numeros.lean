@@ -607,12 +607,12 @@ begin
   use nat_ceil (1/ε),
   intros n hn,
   have n_pos : 0 < n,
-  { calc 0 < nat_ceil (1/ε) : _
-       ... ≤ n : _,
-    { rw lt_nat_ceil,
-      simp,
-      assumption },
-    { assumption } },
+    { calc 0 < nat_ceil (1/ε) : _
+         ... ≤ n              : _,
+      { rw lt_nat_ceil,
+        simp,
+        assumption },
+      { assumption } },
   rw [abs_of_nonneg,
       sub_le_iff_le_add,
       div_le_iff,
@@ -643,4 +643,4 @@ end
 
 -- Basado en la teoría numbers.lean de Robert Y. Lewis que se
 -- encuentra en https://bit.ly/39teUbt y se comenta en el vídeo
--- "Numbers in Leann" que se encuentra en https://youtu.be/iEs2U_kzYy4
+-- "Numbers in Lean" que se encuentra en https://youtu.be/iEs2U_kzYy4
