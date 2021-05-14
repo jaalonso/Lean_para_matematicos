@@ -21,7 +21,6 @@ import data.padics
 -- Ejercicio. Calcular el tipo del (3 : ℤ).
 -- ----------------------------------------------------------------------
 
-
 #check (3 : ℤ)
 
 -- Comentario: Al colocar el cursor sobre check se obtiene
@@ -180,7 +179,7 @@ no goals
 -- 1. La táctica (exact_mod_cast h) normaliza el objetivo y lo resuelve
 --    con exact.
 
--- 2ª demostración
+-- 3ª demostración
 -- ===============
 
 example
