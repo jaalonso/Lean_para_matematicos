@@ -1,28 +1,28 @@
-import data.set.basic 
-import data.set.lattice 
+import data.set.basic
+import data.set.lattice
 import data.nat.parity
 import tactic.linarith
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Habilitar las teorías set, nat y function. 
+-- Ejercicio. Habilitar las teorías set, nat y function.
 -- ----------------------------------------------------------------------
 
 open set nat function
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Activar la lógica clásica. 
+-- Ejercicio. Activar la lógica clásica.
 -- ----------------------------------------------------------------------
 
 open_locale classical
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar los tipos α, β, γ e I. 
+-- Ejercicio. Declarar los tipos α, β, γ e I.
 -- ----------------------------------------------------------------------
 
 variables {α : Type*} {β : Type*} {γ : Type*} {I : Type*}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Empezar la seccioón set_variables. 
+-- Ejercicio. Empezar la sección set_variables.
 -- ----------------------------------------------------------------------
 
 
@@ -31,7 +31,7 @@ section set_variables
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar
 -- 1. x como una variable sobre objetos de tipo α
--- 2. s, t y u como variables sobre conjuntos de elementos de tipo α. 
+-- 2. s, t y u como variables sobre conjuntos de elementos de tipo α.
 -- ----------------------------------------------------------------------
 
 variable  x : α
@@ -49,18 +49,18 @@ variables s t u : set α
 --    (univ: set α)
 -- ----------------------------------------------------------------------
 
-#check s ⊆ t        
-#check x ∈ s        
-#check x ∉ s        
-#check s ∩ t        
-#check s ∪ t        
-#check (∅ : set α)  
+#check s ⊆ t
+#check x ∈ s
+#check x ∉ s
+#check s ∩ t
+#check s ∪ t
+#check (∅ : set α)
 #check (univ: set α)
 
 -- Comentario; Al colocar el cursor sobre check se obtiene
 -- + s ⊆ t : Prop
--- + x ∈ s : Prop 
--- + x ∉ s : Prop 
+-- + x ∈ s : Prop
+-- + x ∉ s : Prop
 -- + s ∩ t : set α
 -- + s ∪ t : set α
 -- + ∅ : set α
@@ -69,19 +69,19 @@ variables s t u : set α
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si
 --    s ⊆ t
--- entonces 
+-- entonces
 --    s ∩ u ⊆ t ∩ u :=
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
 -- ===============
 
-example 
-  (h : s ⊆ t) 
+example
+  (h : s ⊆ t)
   : s ∩ u ⊆ t ∩ u :=
 begin
-  rw subset_def, 
-  rw inter_def, 
+  rw subset_def,
+  rw inter_def,
   rw inter_def,
   dsimp,
   intros x h,
@@ -102,8 +102,8 @@ s t u : set α,
 h : s ⊆ t
 ⊢ s ∩ u ⊆ t ∩ u
   >> rw subset_def,
-⊢ ∀ (x : α), x ∈ s ∩ u → x ∈ t ∩ u 
-  >> rw inter_def, 
+⊢ ∀ (x : α), x ∈ s ∩ u → x ∈ t ∩ u
+  >> rw inter_def,
 ⊢ ∀ (x : α), x ∈ {a : α | a ∈ s ∧ a ∈ u} → x ∈ t ∩ u
   >> rw inter_def,
 ⊢ ∀ (x : α), x ∈ {a : α | a ∈ s ∧ a ∈ u} → x ∈ {a : α | a ∈ t ∧ a ∈ u}
@@ -146,8 +146,8 @@ no goals
 -- 2ª demostración
 -- ===============
 
-example 
-  (h : s ⊆ t) 
+example
+  (h : s ⊆ t)
   : s ∩ u ⊆ t ∩ u :=
 begin
   rw [subset_def, inter_def, inter_def],
@@ -181,9 +181,9 @@ h : ∀ (x : α), x ∈ s → x ∈ t
 no goals
 -/
 
--- Comentarios: 
+-- Comentarios:
 -- 1. La táctica (rintros x ⟨h1, h2⟩) cuando la conclusión es
---    de la forma (∀ x : α, P ∧ Q → S) añade las hipótesis (x : α), 
+--    de la forma (∀ x : α, P ∧ Q → S) añade las hipótesis (x : α),
 --    (h1 : P), (h2 : Q) y cambia la conclusión a S.
 -- 2. La táctica (exact ⟨h1, h2⟩) si la conclusión es de la
 --    forma (P ∧ Q), h1 es una prueba de P y h2 es una prueba de, entonces
@@ -192,8 +192,8 @@ no goals
 -- 3ª demostración
 -- ===============
 
-example 
-  (h : s ⊆ t) 
+example
+  (h : s ⊆ t)
   : s ∩ u ⊆ t ∩ u :=
 begin
   simp only [subset_def, mem_inter_eq] at *,
@@ -224,8 +224,8 @@ no goals
 -- 4ª demostración
 -- ===============
 
-example 
-  (h : s ⊆ t) 
+example
+  (h : s ⊆ t)
   : s ∩ u ⊆ t ∩ u :=
 begin
   intros x xsu,
@@ -277,9 +277,9 @@ end
 example : s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u) :=
 begin
   rintros x ⟨xs, xt | xu⟩,
-   { left, 
+   { left,
      exact ⟨xs, xt⟩ },
-   { right, 
+   { right,
      exact ⟨xs, xu⟩ },
 end
 
@@ -298,9 +298,9 @@ begin
   have xnt : x ∉ t := xstu.1.2,
   have xnu : x ∉ u := xstu.2,
   split,
-  { exact xs }, 
+  { exact xs },
   { dsimp,
-    intro xtu, 
+    intro xtu,
     cases xtu with xt xu,
     { show false, from xnt xt },
     { show false, from xnu xu }},
@@ -343,11 +343,11 @@ end
 example : (s ∩ t) ∪ (s ∩ u) ⊆ s ∩ (t ∪ u):=
 begin
   rintros x (⟨xs, xt⟩ | ⟨xs, xu⟩),
-  { use xs, 
-    left, 
+  { use xs,
+    left,
     exact xt },
-  { use xs, 
-    right, 
+  { use xs,
+    right,
     exact xu },
 end
 
@@ -360,9 +360,9 @@ example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
 begin
   rintros x ⟨xs, xntu⟩,
   use xs,
-  { intro xt, 
+  { intro xt,
     exact xntu (or.inl xt) },
-  { intro xu, 
+  { intro xu,
     exact xntu (or.inr xu) },
 end
 
@@ -379,17 +379,17 @@ begin
   ext x,
   simp only [mem_inter_eq],
   split,
-  { rintros ⟨xs, xt⟩, 
+  { rintros ⟨xs, xt⟩,
     exact ⟨xt, xs⟩ },
-  { rintros ⟨xt, xs⟩, 
+  { rintros ⟨xt, xs⟩,
     exact ⟨xs, xt⟩ },
 end
 
--- Comentarios: 
+-- Comentarios:
 -- 1. La táctica ext si la conclusión es un igualdad de conjunto (A = B)
 --    la sustituye por (x ∈ A ↔ x ∈ B).
 -- 2. Se ha usado el lema
---    + mem_inter_eq x s t : x ∈ s ∩ t = (x ∈ s ∧ x ∈ t) 
+--    + mem_inter_eq x s t : x ∈ s ∩ t = (x ∈ s ∧ x ∈ t)
 
 -- 2ª demostración
 -- ===============
@@ -398,7 +398,7 @@ example : s ∩ t = t ∩ s :=
 by ext x; simp [and.comm]
 
 -- Comentario: Se ha usado el lema
--- + and.comm : a ∧ b ↔ b ∧ a 
+-- + and.comm : a ∧ b ↔ b ∧ a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que
@@ -407,13 +407,13 @@ by ext x; simp [and.comm]
 
 example : s ∩ (s ∪ t) = s :=
 begin
-  ext x, 
+  ext x,
   split,
-  { rintros ⟨xs, _⟩, 
+  { rintros ⟨xs, _⟩,
     exact xs },
   { intro xs,
-    use xs, 
-    left, 
+    use xs,
+    left,
     exact xs },
 end
 
@@ -424,12 +424,12 @@ end
 
 example : s ∪ (s ∩ t) = s :=
 begin
-  ext x, 
+  ext x,
   split,
-  { rintros (xs | ⟨xs, xt⟩); 
+  { rintros (xs | ⟨xs, xt⟩);
     exact xs },
-  { intro xs, 
-    left, 
+  { intro xs,
+    left,
     exact xs },
 end
 
@@ -440,21 +440,21 @@ end
 
 example : (s \ t) ∪ t = s ∪ t :=
 begin
-  ext x, 
+  ext x,
   split,
   { rintros (⟨xs, nxt⟩ | xt),
-    { left, 
+    { left,
       exact xs},
-    { right, 
+    { right,
       exact xt }},
   { by_cases h : x ∈ t,
-    { intro _, 
-      right, 
+    { intro _,
+      right,
       exact h },
     { rintros (xs | xt),
-      { left, 
+      { left,
         use [xs, h] },
-      { right, 
+      { right,
         use xt }}},
 end
 
@@ -466,27 +466,27 @@ end
 
 example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
 begin
-  ext x, 
+  ext x,
   split,
   { rintros (⟨xs, xnt⟩ | ⟨xt, xns⟩),
-    { split, 
-      { left, 
+    { split,
+      { left,
         exact xs },
-      { rintros ⟨_, xt⟩, 
+      { rintros ⟨_, xt⟩,
         contradiction }},
-    { split , 
-      { right, 
+    { split ,
+      { right,
         exact xt },
-      { rintros ⟨xs, _⟩, 
+      { rintros ⟨xs, _⟩,
         contradiction }}},
   { rintros ⟨xs | xt, nxst⟩,
-    { left, 
-      use xs, 
+    { left,
+      use xs,
       intro xt,
       apply nxst,
       split; assumption },
-    { right, 
-      use xt, 
+    { right,
+      use xt,
       intro xs,
       apply nxst,
       split; assumption }},
@@ -494,7 +494,7 @@ end
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir evens como el conjunto de los pares y odds el de
--- los impares. 
+-- los impares.
 -- ----------------------------------------------------------------------
 
 def evens : set ℕ := {n | even n}
@@ -502,7 +502,7 @@ def odds :  set ℕ := {n | ¬ even n}
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que la unión de pare e impares es el universal.
---    
+--
 -- ----------------------------------------------------------------------
 
 example : evens ∪ odds = univ :=
@@ -528,12 +528,12 @@ example : (univ : set α) = {x | true} := rfl
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que el vacío no tiene elementos.
---    
+--
 -- ----------------------------------------------------------------------
 
-example 
-  (x : ℕ) 
-  (h : x ∈ (∅ : set ℕ)) 
+example
+  (x : ℕ)
+  (h : x ∈ (∅ : set ℕ))
   : false :=
 h
 
@@ -541,8 +541,8 @@ h
 -- Ejercicio. Demostrar que todos los elementos pertenecen al universal.
 -- ----------------------------------------------------------------------
 
-example 
-  (x : ℕ) 
+example
+  (x : ℕ)
   : x ∈ (univ : set ℕ) :=
 trivial
 
@@ -557,26 +557,26 @@ begin
   simp,
   intro nprime,
   cases prime.eq_two_or_odd nprime with h h,
-  { rw h, 
-    intro, 
+  { rw h,
+    intro,
     linarith },
   { rw [even_iff, h],
     norm_num },
 end
 
 -- Comentario: Se han usado los siguientes lemas
--- + prime.eq_two_or_odd : prime p → p = 2 ∨ p % 2 = 1 
--- + even_iff : n.even ↔ n % 2 = 0 
+-- + prime.eq_two_or_odd : prime p → p = 2 ∨ p % 2 = 1
+-- + even_iff : n.even ↔ n % 2 = 0
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Crear una sección. 
+-- Ejercicio. Crear una sección.
 -- ----------------------------------------------------------------------
 
 section
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar A y B como familia de conjuntos de elementos de
--- tipo α indexadas por ℕ. 
+-- tipo α indexadas por ℕ.
 -- ----------------------------------------------------------------------
 
 variables A B : ℕ → set α
@@ -598,8 +598,8 @@ begin
 end
 
 -- Comentario: Se han usado los lemas
--- + mem_inter_eq x s t : x ∈ s ∩ t = (x ∈ s ∧ x ∈ t) 
--- + mem_Union : x ∈ Union A ↔ ∃ (i : ℕ), x ∈ A i 
+-- + mem_inter_eq x s t : x ∈ s ∩ t = (x ∈ s ∧ x ∈ t)
+-- + mem_Union : x ∈ Union A ↔ ∃ (i : ℕ), x ∈ A i
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que
@@ -624,20 +624,20 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección 
+-- Ejercicio. Cerrar la sección
 -- ----------------------------------------------------------------------
 
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Abrir una sección 
+-- Ejercicio. Abrir una sección
 -- ----------------------------------------------------------------------
 
 section
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Declarar A y B como familia de conjuntos de elementos de
--- tipo α indexadas por ℕ. 
+-- tipo α indexadas por ℕ.
 -- ----------------------------------------------------------------------
 
 variables A B : ℕ → set α
@@ -653,15 +653,15 @@ begin
   simp only [mem_union, mem_Inter],
   split,
   { rintros (xs | xI),
-    { intro i, 
-      right, 
+    { intro i,
+      right,
       exact xs },
-    { intro i, 
-      left, 
+    { intro i,
+      left,
       exact xI i }},
   { intro h,
     by_cases xs : x ∈ s,
-    { left, 
+    { left,
       exact xs },
     { right,
       intro i,
@@ -671,17 +671,17 @@ begin
 end
 
 -- Comentario. Se han usado los lemas
--- + mem_union x s t : x ∈ s ∪ t ↔ x ∈ s ∨ x ∈ t 
--- + mem_Inter : x ∈ Inter A ↔ ∀ (i : ℕ), x ∈ A i 
+-- + mem_union x s t : x ∈ s ∪ t ↔ x ∈ s ∨ x ∈ t
+-- + mem_Inter : x ∈ Inter A ↔ ∀ (i : ℕ), x ∈ A i
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección. 
+-- Ejercicio. Cerrar la sección.
 -- ----------------------------------------------------------------------
 
 end
 
 -- Comentario: Mathlib también tiene, como se explica en *Mathematics in
--- Lean*, 
+-- Lean*,
 -- + uniones acotadas: ⋃ x ∈ s, f x
 -- + intersecciones acotadas: ⋂ x ∈ s, f x
 -- + uniones de conjuntos: ⋃₀ s
@@ -694,13 +694,13 @@ end
 end set_variables
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Iniciar la sección function_variables. 
+-- Ejercicio. Iniciar la sección function_variables.
 -- ----------------------------------------------------------------------
 
 section function_variables
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar las siguientes variables: 
+-- Ejercicio. Declarar las siguientes variables:
 -- + f como variable de funciones de α en β
 -- + s y t como variable sobre conjunto de elementos de tipo α.
 -- + u y v como variable sobre conjunto de elementos de tipo β.
@@ -715,7 +715,7 @@ variable  A : I → set α
 variable  B : I → set β
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular los tipos de 
+-- Ejercicio. Calcular los tipos de
 -- 1. La imagen de s por f.
 -- 2. La imagen inversa de u por f,
 -- ----------------------------------------------------------------------
@@ -754,12 +754,12 @@ by { ext, refl }
 
 example : f '' (s ∪ t) = f '' s ∪ f '' t :=
 begin
-  ext y, 
+  ext y,
   split,
   { rintros ⟨x, xs | xt, rfl⟩,
     { left,
        use [x, xs] },
-    { right, 
+    { right,
       use [x, xt] }},
   { rintros (⟨x, xs, rfl⟩ | ⟨x, xt, rfl⟩),
     { use [x, or.inl xs] },
@@ -797,15 +797,15 @@ begin
 end
 
 -- Comentario: Se ha usado el lema
--- + mem_image_of_mem f : x ∈ s → f x ∈ f '' s  
+-- + mem_image_of_mem f : x ∈ s → f x ∈ f '' s
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si f es inyectiva, entonces
 --    f ⁻¹' (f '' s) ⊆ s
 -- ----------------------------------------------------------------------
 
-example 
-  (h : injective f) 
+example
+  (h : injective f)
   : f ⁻¹' (f '' s) ⊆ s :=
 begin
   rintros x ⟨y, ys, fxeq⟩,
@@ -829,8 +829,8 @@ end
 --    u ⊆ f '' (f⁻¹' u) :=
 -- ----------------------------------------------------------------------
 
-example 
-  (h : surjective f) 
+example
+  (h : surjective f)
   : u ⊆ f '' (f⁻¹' u) :=
 begin
   intros y yu,
@@ -838,7 +838,7 @@ begin
   use x,
   split,
   { show f x ∈ u,
-    rw fxeq, 
+    rw fxeq,
     exact yu },
   { exact fxeq },
 end
@@ -848,8 +848,8 @@ end
 --    f '' s ⊆ f '' t
 -- ----------------------------------------------------------------------
 
-example 
-  (h : s ⊆ t) 
+example
+  (h : s ⊆ t)
   : f '' s ⊆ f '' t :=
 begin
   rintros y ⟨x, xs, fxeq⟩,
@@ -861,8 +861,8 @@ end
 --    f ⁻¹' u ⊆ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
-example 
-  (h : u ⊆ v) 
+example
+  (h : u ⊆ v)
   : f ⁻¹' u ⊆ f ⁻¹' v :=
 by intro x; apply h
 
@@ -892,8 +892,8 @@ end
 --    f '' s ∩ f '' t ⊆ f '' (s ∩ t)
 -- ----------------------------------------------------------------------
 
-example 
-  (h : injective f) 
+example
+  (h : injective f)
   : f '' s ∩ f '' t ⊆ f '' (s ∩ t) :=
 begin
   rintros y ⟨⟨x, xs, fxeq⟩, ⟨z, zt, fzeq⟩⟩,
@@ -901,7 +901,7 @@ begin
   split,
   { split,
     { assumption },
-    { have hxz : x = z := 
+    { have hxz : x = z :=
         (injective.eq_iff' h fzeq).mp fxeq,
       rw hxz,
       assumption }},
@@ -951,9 +951,9 @@ begin
   split,
   { rintros ⟨⟨x, xs, fxeq⟩, yv⟩,
     use x,
-    split, 
+    split,
     { split,
-      { assumption }, 
+      { assumption },
       { show f x ∈ v,
         rw fxeq,
         assumption }},
@@ -1019,7 +1019,7 @@ end
 
 example : f '' (⋃ i, A i) = ⋃ i, f '' A i :=
 begin
-  ext y, 
+  ext y,
   simp,
   split,
   { rintros ⟨x, ⟨i, xAi⟩, fxeq⟩,
@@ -1036,22 +1036,22 @@ end
 
 example : f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i :=
 begin
-  intro y, 
+  intro y,
   simp,
   intros x h fxeq i,
   use [x, h i, fxeq],
 end
 
-example 
-  (i : I) 
-  (injf : injective f) 
+example
+  (i : I)
+  (injf : injective f)
   : (⋂ i, f '' A i) ⊆ f '' (⋂ i, A i) :=
 begin
-  intro y, 
+  intro y,
   simp,
   intro h,
   rcases h i with ⟨x, xAi, fxeq⟩,
-  use x, 
+  use x,
   split,
   { intro i',
     rcases h i' with ⟨x', x'Ai, fx'eq⟩,
@@ -1101,7 +1101,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sesión function_variables 
+-- Ejercicio. Cerrar la sesión function_variables
 -- ----------------------------------------------------------------------
 
 end function_variables
