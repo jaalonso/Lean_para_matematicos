@@ -70,7 +70,7 @@ variables s t u : set α
 -- Ejercicio 7. Demostrar que si
 --    s ⊆ t
 -- entonces
---    s ∩ u ⊆ t ∩ u :=
+--    s ∩ u ⊆ t ∩ u
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
