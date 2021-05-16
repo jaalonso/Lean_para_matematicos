@@ -703,10 +703,10 @@ section function_variables
 -- ---------------------------------------------------------------------
 -- Ejercicio 34. Declarar las siguientes variables:
 -- + f como variable de funciones de α en β
--- + s y t como variable sobre conjunto de elementos de tipo α.
--- + u y v como variable sobre conjunto de elementos de tipo β.
--- + A como variable de familas de conjunto de α con índice en I.
--- + B como variable de familas de conjunto de β con índice en I.
+-- + s y t como variables sobre conjuntos de elementos de tipo α.
+-- + u y v como variables sobre conjuntos de elementos de tipo β.
+-- + A como variable de familias de conjuntos de α con índice en I.
+-- + B como variable de familias de conjuntos de β con índice en I.
 -- ----------------------------------------------------------------------
 
 variable  f : α → β
