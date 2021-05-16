@@ -576,8 +576,8 @@ end
 section
 
 -- ---------------------------------------------------------------------
--- Ejercicio 24. Declarar A y B como familia de conjuntos de elementos de
--- tipo α indexadas por ℕ.
+-- Ejercicio 24. Declarar A y B como familias de conjuntos de elementos
+-- de tipo α indexadas por ℕ.
 -- ----------------------------------------------------------------------
 
 variables A B : ℕ → set α
