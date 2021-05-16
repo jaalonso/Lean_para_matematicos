@@ -501,8 +501,9 @@ def evens : set ℕ := {n | even n}
 def odds :  set ℕ := {n | ¬ even n}
 
 -- ---------------------------------------------------------------------
--- Ejercicio 18. Demostrar que la unión de pare e impares es el universal.
---
+-- Ejercicio 18. Demostrar que la unión de pares e impares es el
+-- universal; es decir,
+--    evens ∪ odds = univ
 -- ----------------------------------------------------------------------
 
 example : evens ∪ odds = univ :=
