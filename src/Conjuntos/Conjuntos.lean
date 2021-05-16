@@ -1041,6 +1041,11 @@ begin
   use [x, h i, fxeq],
 end
 
+-- ---------------------------------------------------------------------
+-- Ejercicio 58. Demostrar que si f es inyectiva, entonces
+--    (⋂ i, f '' A i) ⊆ f '' (⋂ i, A i)
+-- ----------------------------------------------------------------------
+
 example
   (i : I)
   (injf : injective f)
@@ -1062,7 +1067,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio 58. Demostrar que
+-- Ejercicio 59. Demostrar que
 --    f ⁻¹' (⋃ i, B i) = ⋃ i, f ⁻¹' (B i)
 -- ----------------------------------------------------------------------
 
@@ -1070,7 +1075,7 @@ example : f ⁻¹' (⋃ i, B i) = ⋃ i, f ⁻¹' (B i) :=
 by { ext x, simp }
 
 -- ---------------------------------------------------------------------
--- Ejercicio 59. Demostrar que
+-- Ejercicio 60. Demostrar que
 --    f ⁻¹' (⋂ i, B i) = ⋂ i, f ⁻¹' (B i)
 -- ----------------------------------------------------------------------
 
@@ -1078,7 +1083,7 @@ example : f ⁻¹' (⋂ i, B i) = ⋂ i, f ⁻¹' (B i) :=
 by { ext x, simp }
 
 -- ---------------------------------------------------------------------
--- Ejercicio 60. Demostrar el teorema de Cantor:
+-- Ejercicio 61. Demostrar el teorema de Cantor:
 --    ∀ f : α → set α, ¬ surjective f
 -- ----------------------------------------------------------------------
 
@@ -1100,7 +1105,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio 61. Cerrar la sesión function_variables
+-- Ejercicio 62. Cerrar la sesión function_variables
 -- ----------------------------------------------------------------------
 
 end function_variables
