@@ -263,12 +263,12 @@ begin
   have xtu : x ∈ t ∪ u := hx.2,
   clear hx,
   cases xtu with xt xu,
-   { left,
-     show x ∈ s ∩ t,
-     exact ⟨xs, xt⟩ },
-   { right,
-     show x ∈ s ∩ u,
-     exact ⟨xs, xu⟩ },
+    { left,
+      show x ∈ s ∩ t,
+      exact ⟨xs, xt⟩ },
+    { right,
+      show x ∈ s ∩ u,
+      exact ⟨xs, xu⟩ },
 end
 
 -- 1ª demostración
