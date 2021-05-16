@@ -549,10 +549,10 @@ trivial
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 22. Demostrar que
---    { n | prime n } ∩ { n | n > 2} ⊆ { n | ¬ even n }
+--    {n | prime n} ∩ {n | n > 2} ⊆ {n | ¬ even n}
 -- ----------------------------------------------------------------------
 
-example : { n | prime n } ∩ { n | n > 2} ⊆ { n | ¬ even n } :=
+example : {n | prime n} ∩ {n | n > 2} ⊆ { n | ¬ even n} :=
 begin
   intro n,
   simp,
