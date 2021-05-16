@@ -87,10 +87,10 @@ begin
   intros x h,
   cases h with xs xu,
   split,
-    { rw subset_def at h,
-      apply h,
-      assumption },
-    { assumption },
+  { rw subset_def at h,
+    apply h,
+    assumption },
+  { assumption },
 end
 
 -- Prueba
