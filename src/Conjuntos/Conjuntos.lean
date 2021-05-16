@@ -4,32 +4,32 @@ import data.nat.parity
 import tactic.linarith
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Habilitar las teorías set, nat y function.
+-- Ejercicio 1. Habilitar las teorías set, nat y function.
 -- ----------------------------------------------------------------------
 
 open set nat function
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Activar la lógica clásica.
+-- Ejercicio 2. Activar la lógica clásica.
 -- ----------------------------------------------------------------------
 
 open_locale classical
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar los tipos α, β, γ e I.
+-- Ejercicio 3. Declarar los tipos α, β, γ e I.
 -- ----------------------------------------------------------------------
 
 variables {α : Type*} {β : Type*} {γ : Type*} {I : Type*}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Empezar la sección set_variables.
+-- Ejercicio 4. Empezar la sección set_variables.
 -- ----------------------------------------------------------------------
 
 
 section set_variables
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar
+-- Ejercicio 5. Declarar
 -- 1. x como una variable sobre objetos de tipo α
 -- 2. s, t y u como variables sobre conjuntos de elementos de tipo α.
 -- ----------------------------------------------------------------------
@@ -38,8 +38,8 @@ variable  x : α
 variables s t u : set α
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular el tipo de las siguientes expresiones (el símbolo
--- se puede escribir como se indica a su lado).
+-- Ejercicio 6. Calcular el tipo de las siguientes expresiones (el
+-- símbolo se puede escribir como se indica a su lado).
 --    s ⊆ t           -- \sub
 --    x ∈ s           -- \in o \mem
 --    x ∉ s           -- \notin
@@ -67,7 +67,7 @@ variables s t u : set α
 -- univ : set α
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si
+-- Ejercicio 7. Demostrar que si
 --    s ⊆ t
 -- entonces
 --    s ∩ u ⊆ t ∩ u :=
@@ -87,10 +87,10 @@ begin
   intros x h,
   cases h with xs xu,
   split,
-   { rw subset_def at h,
-     apply h,
-     assumption },
-   { assumption },
+    { rw subset_def at h,
+      apply h,
+      assumption },
+    { assumption },
 end
 
 -- Prueba
@@ -249,7 +249,7 @@ no goals
 -/
 
 -- ---------------------------------------------------------------------
--- Ejercicio  Demostrar que
+-- Ejercicio 8. Demostrar que
 --    s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u)
 -- ----------------------------------------------------------------------
 
@@ -284,7 +284,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 9. Demostrar que
 --    (s \ t) \ u ⊆ s \ (t ∪ u)
 -- ----------------------------------------------------------------------
 
@@ -336,7 +336,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 10. Demostrar que
 --    (s ∩ t) ∪ (s ∩ u) ⊆ s ∩ (t ∪ u
 -- ----------------------------------------------------------------------
 
@@ -352,7 +352,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 11. Demostrar que
 --    s \ (t ∪ u) ⊆ (s \ t) \ u
 -- ----------------------------------------------------------------------
 
@@ -367,7 +367,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 12. Demostrar que
 --    s ∩ t = t ∩ s
 -- ----------------------------------------------------------------------
 
@@ -401,7 +401,7 @@ by ext x; simp [and.comm]
 -- + and.comm : a ∧ b ↔ b ∧ a
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 13. Demostrar que
 --    s ∩ (s ∪ t) = s
 -- ----------------------------------------------------------------------
 
@@ -418,7 +418,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 14. Demostrar que
 --    s ∪ (s ∩ t) = s
 -- ----------------------------------------------------------------------
 
@@ -434,7 +434,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 15. Demostrar que
 --    (s \ t) ∪ t
 -- ----------------------------------------------------------------------
 
@@ -459,7 +459,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 16. Demostrar que
 --    (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t)
 -- ----------------------------------------------------------------------
 
@@ -493,7 +493,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir evens como el conjunto de los pares y odds el de
+-- Ejercicio 17. Definir evens como el conjunto de los pares y odds el de
 -- los impares.
 -- ----------------------------------------------------------------------
 
@@ -501,7 +501,7 @@ def evens : set ℕ := {n | even n}
 def odds :  set ℕ := {n | ¬ even n}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que la unión de pare e impares es el universal.
+-- Ejercicio 18. Demostrar que la unión de pare e impares es el universal.
 --
 -- ----------------------------------------------------------------------
 
@@ -514,7 +514,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 19. Demostrar que
 -- + s ∩ t = {x | x ∈ s ∧ x ∈ t}
 -- + s ∪ t = {x | x ∈ s ∨ x ∈ t}
 -- + (∅ : set α) = {x | false}
@@ -527,7 +527,7 @@ example : (∅ : set α) = {x | false} := rfl
 example : (univ : set α) = {x | true} := rfl
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que el vacío no tiene elementos.
+-- Ejercicio 20. Demostrar que el vacío no tiene elementos.
 --
 -- ----------------------------------------------------------------------
 
@@ -538,7 +538,7 @@ example
 h
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que todos los elementos pertenecen al universal.
+-- Ejercicio 21. Demostrar que todos los elementos pertenecen al universal.
 -- ----------------------------------------------------------------------
 
 example
@@ -547,7 +547,7 @@ example
 trivial
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 22. Demostrar que
 --    { n | prime n } ∩ { n | n > 2} ⊆ { n | ¬ even n }
 -- ----------------------------------------------------------------------
 
@@ -569,20 +569,20 @@ end
 -- + even_iff : n.even ↔ n % 2 = 0
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Crear una sección.
+-- Ejercicio 23. Crear una sección.
 -- ----------------------------------------------------------------------
 
 section
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar A y B como familia de conjuntos de elementos de
+-- Ejercicio 24. Declarar A y B como familia de conjuntos de elementos de
 -- tipo α indexadas por ℕ.
 -- ----------------------------------------------------------------------
 
 variables A B : ℕ → set α
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 25. Demostrar que
 --    s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s)
 -- ----------------------------------------------------------------------
 
@@ -602,7 +602,7 @@ end
 -- + mem_Union : x ∈ Union A ↔ ∃ (i : ℕ), x ∈ A i
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 26. Demostrar que
 --    (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i)
 -- ----------------------------------------------------------------------
 
@@ -624,26 +624,26 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección
+-- Ejercicio 27. Cerrar la sección
 -- ----------------------------------------------------------------------
 
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Abrir una sección
+-- Ejercicio 28. Abrir una sección
 -- ----------------------------------------------------------------------
 
 section
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar A y B como familia de conjuntos de elementos de
+-- Ejercicio 29. Declarar A y B como familia de conjuntos de elementos de
 -- tipo α indexadas por ℕ.
 -- ----------------------------------------------------------------------
 
 variables A B : ℕ → set α
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 30. Demostrar que
 --    s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s)
 -- ----------------------------------------------------------------------
 
@@ -675,7 +675,7 @@ end
 -- + mem_Inter : x ∈ Inter A ↔ ∀ (i : ℕ), x ∈ A i
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección.
+-- Ejercicio 31. Cerrar la sección.
 -- ----------------------------------------------------------------------
 
 end
@@ -688,19 +688,19 @@ end
 -- + intersecciones de conjuntos: ⋂₀ s
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sección set_variables.
+-- Ejercicio 32. Cerrar la sección set_variables.
 -- ---------------------------------------------------------------------
 
 end set_variables
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Iniciar la sección function_variables.
+-- Ejercicio 33. Iniciar la sección function_variables.
 -- ----------------------------------------------------------------------
 
 section function_variables
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar las siguientes variables:
+-- Ejercicio 34. Declarar las siguientes variables:
 -- + f como variable de funciones de α en β
 -- + s y t como variable sobre conjunto de elementos de tipo α.
 -- + u y v como variable sobre conjunto de elementos de tipo β.
@@ -715,7 +715,7 @@ variable  A : I → set α
 variable  B : I → set β
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Calcular los tipos de
+-- Ejercicio 35. Calcular los tipos de
 -- 1. La imagen de s por f.
 -- 2. La imagen inversa de u por f,
 -- ----------------------------------------------------------------------
@@ -726,21 +726,21 @@ variable  B : I → set β
 #check preimage f u
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 36. Demostrar que
 --    f '' s = {y | ∃ x, x ∈ s ∧ f x = y}
 -- ----------------------------------------------------------------------
 
 example : f '' s = {y | ∃ x, x ∈ s ∧ f x = y} := rfl
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 37. Demostrar que
 --    f ⁻¹' u = {x | f x ∈ u }
 -- ----------------------------------------------------------------------
 
 example : f ⁻¹' u = {x | f x ∈ u } := rfl
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 38. Demostrar que
 --    f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
@@ -748,7 +748,7 @@ example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
 by { ext, refl }
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 39. Demostrar que
 --    f '' (s ∪ t) = f '' s ∪ f '' t
 -- ----------------------------------------------------------------------
 
@@ -767,7 +767,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 40. Demostrar que
 --    s ⊆ f ⁻¹' (f '' s)
 -- ----------------------------------------------------------------------
 
@@ -779,7 +779,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 41. Demostrar que
 --    f '' s ⊆ u ↔ s ⊆ f ⁻¹' u
 -- ----------------------------------------------------------------------
 
@@ -800,7 +800,7 @@ end
 -- + mem_image_of_mem f : x ∈ s → f x ∈ f '' s
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si f es inyectiva, entonces
+-- Ejercicio 42. Demostrar que si f es inyectiva, entonces
 --    f ⁻¹' (f '' s) ⊆ s
 -- ----------------------------------------------------------------------
 
@@ -814,7 +814,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 43. Demostrar que
 --    f '' (f⁻¹' u) ⊆ u
 -- ----------------------------------------------------------------------
 
@@ -825,7 +825,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si f es suprayectiva, entonces
+-- Ejercicio 44. Demostrar que si f es suprayectiva, entonces
 --    u ⊆ f '' (f⁻¹' u) :=
 -- ----------------------------------------------------------------------
 
@@ -844,7 +844,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si s ⊂ t, entonces
+-- Ejercicio 45. Demostrar que si s ⊂ t, entonces
 --    f '' s ⊆ f '' t
 -- ----------------------------------------------------------------------
 
@@ -857,7 +857,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si u ⊆ v, entonces
+-- Ejercicio 46. Demostrar que si u ⊆ v, entonces
 --    f ⁻¹' u ⊆ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
@@ -867,7 +867,7 @@ example
 by intro x; apply h
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 47. Demostrar que
 --    f ⁻¹' (u ∪ v) = f ⁻¹' u ∪ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
@@ -875,7 +875,7 @@ example : f ⁻¹' (u ∪ v) = f ⁻¹' u ∪ f ⁻¹' v :=
 by ext x; refl
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 48. Demostrar que
 --    f '' (s ∩ t) ⊆ f '' s ∩ f '' t
 -- ----------------------------------------------------------------------
 
@@ -888,7 +888,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que si f es inyectiva, entonces
+-- Ejercicio 49. Demostrar que si f es inyectiva, entonces
 --    f '' s ∩ f '' t ⊆ f '' (s ∩ t)
 -- ----------------------------------------------------------------------
 
@@ -909,7 +909,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 50. Demostrar que
 --    f '' s \ f '' t ⊆ f '' (s \ t)
 -- ----------------------------------------------------------------------
 
@@ -927,7 +927,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 51. Demostrar que
 --    f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
 -- ----------------------------------------------------------------------
 
@@ -941,7 +941,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 52. Demostrar que
 --    (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v)
 -- ----------------------------------------------------------------------
 
@@ -966,7 +966,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 53. Demostrar que
 --    f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u
 -- ----------------------------------------------------------------------
 
@@ -980,7 +980,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 54. Demostrar que
 --    s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u)
 -- ----------------------------------------------------------------------
 
@@ -994,7 +994,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 55. Demostrar que
 --    s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u)
 -- ----------------------------------------------------------------------
 
@@ -1013,7 +1013,7 @@ end
 -- + mem_union_right : x ∈ t → x ∈ s ∪ t
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 56. Demostrar que
 --    f '' (⋃ i, A i) = ⋃ i, f '' A i
 -- ----------------------------------------------------------------------
 
@@ -1029,7 +1029,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 57. Demostrar que
 --    f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i
 -- ----------------------------------------------------------------------
 
@@ -1063,7 +1063,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 58. Demostrar que
 --    f ⁻¹' (⋃ i, B i) = ⋃ i, f ⁻¹' (B i)
 -- ----------------------------------------------------------------------
 
@@ -1071,7 +1071,7 @@ example : f ⁻¹' (⋃ i, B i) = ⋃ i, f ⁻¹' (B i) :=
 by { ext x, simp }
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que
+-- Ejercicio 59. Demostrar que
 --    f ⁻¹' (⋂ i, B i) = ⋂ i, f ⁻¹' (B i)
 -- ----------------------------------------------------------------------
 
@@ -1079,7 +1079,7 @@ example : f ⁻¹' (⋂ i, B i) = ⋂ i, f ⁻¹' (B i) :=
 by { ext x, simp }
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar el teorema de Cantor:
+-- Ejercicio 60. Demostrar el teorema de Cantor:
 --    ∀ f : α → set α, ¬ surjective f
 -- ----------------------------------------------------------------------
 
@@ -1101,7 +1101,7 @@ begin
 end
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar la sesión function_variables
+-- Ejercicio 61. Cerrar la sesión function_variables
 -- ----------------------------------------------------------------------
 
 end function_variables
