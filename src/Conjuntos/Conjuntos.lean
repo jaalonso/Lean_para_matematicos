@@ -538,7 +538,8 @@ example
 h
 
 -- ---------------------------------------------------------------------
--- Ejercicio 21. Demostrar que todos los elementos pertenecen al universal.
+-- Ejercicio 21. Demostrar que todos los elementos pertenecen al
+-- universal.
 -- ----------------------------------------------------------------------
 
 example
