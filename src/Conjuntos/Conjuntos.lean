@@ -1090,7 +1090,7 @@ by { ext x, simp }
 theorem Cantor : ∀ f : α → set α, ¬ surjective f :=
 begin
   intros f surjf,
-  let S := { i | i ∉ f i},
+  let S := {i | i ∉ f i},
   rcases surjf S with j,
   have h₁ : j ∉ f j,
   { intro h',
