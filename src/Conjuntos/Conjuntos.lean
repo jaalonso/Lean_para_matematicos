@@ -335,6 +335,12 @@ begin
   finish,
 end
 
+-- 5ª demostración
+-- ===============
+
+example : (s \ t) \ u ⊆ s \ (t ∪ u) :=
+by rw diff_diff
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 10. Demostrar que
 --    (s ∩ t) ∪ (s ∩ u) ⊆ s ∩ (t ∪ u
