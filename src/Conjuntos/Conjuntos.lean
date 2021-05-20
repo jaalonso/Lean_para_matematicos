@@ -346,16 +346,54 @@ by rw diff_diff
 --    (s ∩ t) ∪ (s ∩ u) ⊆ s ∩ (t ∪ u
 -- ----------------------------------------------------------------------
 
-example : (s ∩ t) ∪ (s ∩ u) ⊆ s ∩ (t ∪ u):=
+-- 1ª demostración
+-- ===============
+
+example :
+  s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u) :=
 begin
-  rintros x (⟨xs, xt⟩ | ⟨xs, xu⟩),
-  { use xs,
-    left,
-    exact xt },
-  { use xs,
-    right,
-    exact xu },
+  intros x hx,
+  have xs : x ∈ s := hx.1,
+  have xtu : x ∈ t ∪ u := hx.2,
+  clear hx,
+  cases xtu with xt xu,
+  { left,
+    show x ∈ s ∩ t,
+    exact ⟨xs, xt⟩ },
+  { right,
+    show x ∈ s ∩ u,
+    exact ⟨xs, xu⟩ },
 end
+
+-- 2ª demostración
+-- ===============
+
+example :
+  s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u) :=
+begin
+  rintros x ⟨xs, xt | xu⟩,
+  { left,
+    exact ⟨xs, xt⟩ },
+  { right,
+    exact ⟨xs, xu⟩ },
+end
+
+-- 3ª demostración
+-- ===============
+
+example :
+  s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u) :=
+begin
+  intros x hx,
+  by finish
+end
+
+-- 4ª demostración
+-- ===============
+
+example :
+  s ∩ (t ∪ u) ⊆ (s ∩ t) ∪ (s ∩ u) :=
+by rw inter_union_distrib_left
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. Demostrar que
