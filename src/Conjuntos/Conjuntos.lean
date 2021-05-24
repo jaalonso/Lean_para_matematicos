@@ -400,6 +400,45 @@ by rw inter_union_distrib_left
 --    s \ (t ∪ u) ⊆ (s \ t) \ u
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
+begin
+  intros x hx,
+  split,
+  { split,
+    { exact hx.1, },
+    { dsimp,
+      intro xt,
+      apply hx.2,
+      left,
+      exact xt, }},
+  { dsimp,
+    intro xu,
+    apply hx.2,
+    right,
+    exact xu, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
+begin
+  rintros x ⟨xs, xntu⟩,
+  split,
+  { split,
+    { exact xs, },
+    { intro xt,
+      exact xntu (or.inl xt), }},
+  { intro xu,
+    exact xntu (or.inr xu), },
+end
+
+-- 3ª demostración
+-- ===============
+
 example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
 begin
   rintros x ⟨xs, xntu⟩,
@@ -409,6 +448,27 @@ begin
   { intro xu,
     exact xntu (or.inr xu) },
 end
+
+-- 4ª demostración
+-- ===============
+
+example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
+begin
+  rintros x ⟨xs, xntu⟩;
+  finish,
+end
+
+-- 5ª demostración
+-- ===============
+
+example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
+by intro ; finish
+
+-- 6ª demostración
+-- ===============
+
+example : s \ (t ∪ u) ⊆ (s \ t) \ u :=
+by rw diff_diff
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 12. Demostrar que
