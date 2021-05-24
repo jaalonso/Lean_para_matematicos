@@ -2,6 +2,7 @@ import data.set.basic
 import data.set.lattice
 import data.nat.parity
 import tactic.linarith
+import tactic
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Habilitar las teorías set, nat y function.
@@ -578,6 +579,78 @@ by finish
 --    s ∩ (s ∪ t) = s
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+begin
+  ext x,
+  split,
+  { intros h,
+    dsimp at h,
+    exact h.1, },
+  { intro xs,
+    dsimp,
+    split,
+    { exact xs, },
+    { left,
+      exact xs, }},
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+begin
+  ext x,
+  split,
+  { intros h,
+    exact h.1, },
+  { intro xs,
+    split,
+    { exact xs, },
+    { left,
+      exact xs, }},
+end
+
+-- 3ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+begin
+  ext x,
+  split,
+  { intros h,
+    exact h.1, },
+  { intro xs,
+    split,
+    { exact xs, },
+    { exact (or.inl xs), }},
+end
+
+-- 4ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+begin
+  ext,
+  exact ⟨λ h, h.1,
+         λ xs, ⟨xs, or.inl xs⟩⟩,
+end
+
+-- 5ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+begin
+  ext,
+  exact ⟨and.left,
+         λ xs, ⟨xs, or.inl xs⟩⟩,
+end
+
+-- 6ª demostración
+-- ===============
+
 example : s ∩ (s ∪ t) = s :=
 begin
   ext x,
@@ -589,6 +662,12 @@ begin
     left,
     exact xs },
 end
+
+-- 7ª demostración
+-- ===============
+
+example : s ∩ (s ∪ t) = s :=
+inf_sup_self
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 14. Demostrar que
