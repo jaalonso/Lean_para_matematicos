@@ -674,6 +674,35 @@ inf_sup_self
 --    s ∪ (s ∩ t) = s
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ∪ (s ∩ t) = s :=
+begin
+  ext x,
+  split,
+  { intro hx,
+    cases hx with xs xst,
+    { exact xs, },
+    { exact xst.1, }},
+  { intro xs,
+    left,
+    exact xs, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ∪ (s ∩ t) = s :=
+begin
+  ext x,
+  exact ⟨λ hx, or.dcases_on hx id and.left,
+         λ xs, or.inl xs⟩,
+end
+
+-- 3ª demostración
+-- ===============
+
 example : s ∪ (s ∩ t) = s :=
 begin
   ext x,
@@ -684,6 +713,22 @@ begin
     left,
     exact xs },
 end
+
+-- 4ª demostración
+-- ===============
+
+example : s ∪ (s ∩ t) = s :=
+begin
+  ext,
+  simp,
+end
+
+-- 5ª demostración
+-- ===============
+
+example : s ∪ (s ∩ t) = s :=
+sup_inf_self
+
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 15. Demostrar que
