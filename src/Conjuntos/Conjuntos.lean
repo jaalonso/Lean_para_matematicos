@@ -718,17 +718,7 @@ end
 -- ===============
 
 example : s ∪ (s ∩ t) = s :=
-begin
-  ext,
-  simp,
-end
-
--- 5ª demostración
--- ===============
-
-example : s ∪ (s ∩ t) = s :=
 sup_inf_self
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 15. Demostrar que
