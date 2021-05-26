@@ -814,6 +814,8 @@ diff_union_self
 --    (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
 
 example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
 begin
@@ -842,6 +844,60 @@ begin
       apply nxst,
       split; assumption }},
 end
+
+-- 2ª demostración
+-- ===============
+
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
+begin
+  ext x,
+  split,
+  { rintros (⟨xs, xnt⟩ | ⟨xt, xns⟩),
+    { finish, },
+    { finish, }},
+  { rintros ⟨xs | xt, nxst⟩,
+    { finish, },
+    { finish, }},
+end
+
+-- 3ª demostración
+-- ===============
+
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
+begin
+  ext x,
+  split,
+  { rintros (⟨xs, xnt⟩ | ⟨xt, xns⟩) ; finish, },
+  { rintros ⟨xs | xt, nxst⟩ ; finish, },
+end
+
+-- 4ª demostración
+-- ===============
+
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
+begin
+  ext,
+  split,
+  { finish, },
+  { finish, },
+end
+
+-- 5ª demostración
+-- ===============
+
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
+begin
+  rw ext_iff,
+  intro,
+  rw iff_def,
+  finish,
+end
+
+-- 6ª demostración
+-- ===============
+
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
+by finish [ext_iff, iff_def]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 17. Definir evens como el conjunto de los pares y odds el de
