@@ -725,6 +725,37 @@ sup_inf_self
 --    (s \ t) ∪ t = s ∪ t
 -- ----------------------------------------------------------------------
 
+-- 1ª definición
+-- =============
+
+example : (s \ t) ∪ t = s ∪ t :=
+begin
+  ext x,
+  split,
+  { intro hx,
+    cases hx with xst xt,
+    { left,
+      exact xst.1, },
+    { right,
+      exact xt }},
+  { by_cases h : x ∈ t,
+    { intro _,
+      right,
+      exact h },
+    { intro hx,
+      cases hx with xs xt,
+      { left,
+        split,
+        { exact xs, },
+        { dsimp,
+          exact h, }},
+      { right,
+        exact xt, }}},
+end
+
+-- 2ª definición
+-- =============
+
 example : (s \ t) ∪ t = s ∪ t :=
 begin
   ext x,
@@ -744,6 +775,39 @@ begin
       { right,
         use xt }}},
 end
+
+-- 3ª definición
+-- =============
+
+example : (s \ t) ∪ t = s ∪ t :=
+begin
+  ext,
+  simp,
+  tauto,
+end
+
+-- 4ª definición
+-- =============
+
+example : (s \ t) ∪ t = s ∪ t :=
+begin
+  rw ext_iff,
+  intro,
+  rw iff_def,
+  finish,
+end
+
+-- 5ª definición
+-- =============
+
+example : (s \ t) ∪ t = s ∪ t :=
+by finish [ext_iff, iff_def]
+
+-- 6ª definición
+-- =============
+
+example : (s \ t) ∪ t = s ∪ t :=
+diff_union_self
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 16. Demostrar que
