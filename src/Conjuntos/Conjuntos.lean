@@ -900,26 +900,47 @@ example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) :=
 by finish [ext_iff, iff_def]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 17. Definir evens como el conjunto de los pares y odds el de
--- los impares.
+-- Ejercicio 17. Definir
+-- + naturales como el conjunto de los números naturales,
+-- + pares como el conjunto de los números naturales pares y
+-- + impares como el conjunto de los números naturales impares.
 -- ----------------------------------------------------------------------
 
-def evens : set ℕ := {n | even n}
-def odds :  set ℕ := {n | ¬ even n}
+def naturales : set ℕ := {n | true}
+def pares     : set ℕ := {n | even n}
+def impares   : set ℕ := {n | ¬ even n}
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 18. Demostrar que la unión de pares e impares es el
--- universal; es decir,
---    evens ∪ odds = univ
+-- conjunto de los números naturales.
 -- ----------------------------------------------------------------------
 
-example : evens ∪ odds = univ :=
+-- 1ª demostración
+-- ===============
+
+example : pares ∪ impares = naturales :=
 begin
-  rw [evens, odds],
+  unfold pares impares naturales,
   ext n,
   simp,
   apply classical.em,
 end
+
+-- 2ª demostración
+-- ===============
+
+example : pares ∪ impares = naturales :=
+begin
+  unfold pares impares naturales,
+  ext n,
+  finish,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : pares ∪ impares = naturales :=
+by finish [pares, impares, naturales, ext_iff]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 19. Demostrar que
