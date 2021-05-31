@@ -976,20 +976,32 @@ example
 trivial
 
 -- ---------------------------------------------------------------------
--- Ejercicio 22. Demostrar que
---    {n | prime n} ∩ {n | n > 2} ⊆ {n | ¬ even n}
+-- Ejercicio 22. Los números primos y los mayores que 2 se definen por
+--    def primos      : set ℕ := {n | prime n}
+--    def mayoresQue2 : set ℕ := {n | n > 2}
+--
+-- Demostrar que
+--    primos ∩ mayoresQue2 ⊆ impares
 -- ----------------------------------------------------------------------
 
-example : {n | prime n} ∩ {n | n > 2} ⊆ { n | ¬ even n} :=
+def primos      : set ℕ := {n | prime n}
+def mayoresQue2 : set ℕ := {n | n > 2}
+
+-- 1ª demostración
+-- ===============
+
+example : primos ∩ mayoresQue2 ⊆ impares :=
 begin
+  unfold primos mayoresQue2 impares,
   intro n,
   simp,
-  intro nprime,
-  cases prime.eq_two_or_odd nprime with h h,
+  intro hn,
+  cases prime.eq_two_or_odd hn with h h,
   { rw h,
     intro,
-    linarith },
-  { rw [even_iff, h],
+    linarith, },
+  { rw even_iff,
+    rw h,
     norm_num },
 end
 
