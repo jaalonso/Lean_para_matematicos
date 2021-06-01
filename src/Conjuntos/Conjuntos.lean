@@ -987,9 +987,6 @@ trivial
 def primos      : set ℕ := {n | prime n}
 def mayoresQue2 : set ℕ := {n | n > 2}
 
--- 1ª demostración
--- ===============
-
 example : primos ∩ mayoresQue2 ⊆ impares :=
 begin
   unfold primos mayoresQue2 impares,
@@ -1027,16 +1024,61 @@ variables A B : ℕ → set α
 --    s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s) :=
+begin
+  ext x,
+  split,
+  { intro h,
+    rw mem_Union,
+    cases h with xs xUAi,
+    rw mem_Union at xUAi,
+    cases xUAi with i xAi,
+    use i,
+    split,
+    { exact xAi, },
+    { exact xs, }},
+  { intro h,
+    rw mem_Union at h,
+    cases h with i hi,
+    cases hi with xAi xs,
+    split,
+    { exact xs, },
+    { rw mem_Union,
+      use i,
+      exact xAi, }},
+end
+
+-- 2ª demostración
+-- ===============
+
 example : s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s) :=
 begin
   ext x,
   simp only [mem_inter_eq, mem_Union],
   split,
   { rintros ⟨xs, ⟨i, xAi⟩⟩,
-    exact ⟨i, xAi, xs⟩ },
+    exact ⟨i, xAi, xs⟩, },
   { rintros ⟨i, xAi, xs⟩,
     exact ⟨xs, ⟨i, xAi⟩⟩ },
 end
+
+-- 3ª demostración
+-- ===============
+
+example : s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s) :=
+begin
+  ext x,
+  finish [mem_inter_eq, mem_Union],
+end
+
+-- 4ª demostración
+-- ===============
+
+example : s ∩ (⋃ i, A i) = ⋃ i, (A i ∩ s) :=
+by finish [mem_inter_eq, mem_Union, ext_iff]
 
 -- Comentario: Se han usado los lemas
 -- + mem_inter_eq x s t : x ∈ s ∩ t = (x ∈ s ∧ x ∈ t)
