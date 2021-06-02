@@ -1089,6 +1089,9 @@ by finish [mem_inter_eq, mem_Union, ext_iff]
 --    (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i) :=
 begin
   ext x,
@@ -1100,11 +1103,48 @@ begin
       exact (h i).1 },
     { intro i,
       exact (h i).2 }},
-  { rintros ⟨h1, h2⟩ i,
+  { intros h i,
+    cases h with h1 h2,
     split,
     { exact h1 i },
     { exact h2 i }},
 end
+
+-- 2ª demostración
+-- ===============
+
+example : (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i) :=
+begin
+  ext x,
+  simp only [mem_inter_eq, mem_Inter],
+  exact ⟨λ h, ⟨λ i, (h i).1, λ i, (h i).2⟩,
+         λ ⟨h1, h2⟩ i, ⟨h1 i, h2 i⟩⟩,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i) :=
+begin
+  ext,
+  simp only [mem_inter_eq, mem_Inter],
+  finish,
+end
+
+-- 4ª demostración
+-- ===============
+
+example : (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i) :=
+begin
+  ext,
+  finish [mem_inter_eq, mem_Inter],
+end
+
+-- 5ª demostración
+-- ===============
+
+example : (⋂ i, A i ∩ B i) = (⋂ i, A i) ∩ (⋂ i, B i) :=
+by finish [mem_inter_eq, mem_Inter, ext_iff]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 27. Cerrar la sección
