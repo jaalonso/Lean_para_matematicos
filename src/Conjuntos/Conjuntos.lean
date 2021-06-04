@@ -1331,8 +1331,68 @@ example : f ⁻¹' u = {x | f x ∈ u} := rfl
 --    f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
-by { ext, refl }
+begin
+  ext x,
+  split,
+  { intro h,
+    split,
+    { apply mem_preimage.mpr,
+      rw mem_preimage at h,
+      exact mem_of_mem_inter_left h, },
+    { apply mem_preimage.mpr,
+      rw mem_preimage at h,
+      exact mem_of_mem_inter_right h, }},
+  { intro h,
+    apply mem_preimage.mpr,
+    split,
+    { apply mem_preimage.mp,
+      exact mem_of_mem_inter_left h,},
+    { apply mem_preimage.mp,
+      exact mem_of_mem_inter_right h, }},
+end
+
+-- 2ª demostración
+-- ===============
+
+example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
+begin
+  ext x,
+  exact ⟨λ h, ⟨mem_preimage.mpr (mem_of_mem_inter_left h),
+               mem_preimage.mpr (mem_of_mem_inter_right h)⟩,
+         λ h, ⟨mem_preimage.mp (mem_of_mem_inter_left h),
+               mem_preimage.mp (mem_of_mem_inter_right h)⟩⟩,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
+begin
+  ext,
+  refl,
+end
+
+-- 4ª demostración
+-- ===============
+
+example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
+by {ext, refl}
+
+-- 5ª demostración
+-- ===============
+
+example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
+rfl
+
+-- 6ª demostración
+-- ===============
+
+example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v :=
+preimage_inter
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 39. Demostrar que
