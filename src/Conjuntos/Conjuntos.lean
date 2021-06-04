@@ -1170,17 +1170,43 @@ variables A B : ℕ → set α
 --    s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
 begin
   ext x,
   simp only [mem_union, mem_Inter],
   split,
-  { rintros (xs | xI),
-    { intro i,
-      right,
+  { intros h i,
+    cases h with xs xAi,
+    { right,
       exact xs },
-    { intro i,
-      left,
+    { left,
+      exact xAi i, }},
+  { intro h,
+    by_cases xs : x ∈ s,
+    { left,
+      exact xs },
+    { right,
+      intro i,
+      cases h i with xAi xs,
+      { exact xAi, },
+      { contradiction, }}},
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
+begin
+  ext x,
+  simp only [mem_union, mem_Inter],
+  split,
+  { rintros (xs | xI) i,
+    { right,
+      exact xs },
+    { left,
       exact xI i }},
   { intro h,
     by_cases xs : x ∈ s,
@@ -1192,6 +1218,44 @@ begin
       { assumption },
       { contradiction }}},
 end
+
+-- 3ª demostración
+-- ===============
+
+example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
+begin
+  ext x,
+  simp only [mem_union, mem_Inter],
+  split,
+  { finish, },
+  { finish, },
+end
+
+-- 4ª demostración
+-- ===============
+
+example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
+begin
+  ext,
+  simp only [mem_union, mem_Inter],
+  split ; finish,
+end
+
+-- 5ª demostración
+-- ===============
+
+example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
+begin
+  ext,
+  simp only [mem_union, mem_Inter],
+  finish [iff_def],
+end
+
+-- 6ª demostración
+-- ===============
+
+example : s ∪ (⋂ i, A i) = ⋂ i, (A i ∪ s) :=
+by finish [ext_iff, mem_union, mem_Inter, iff_def]
 
 -- Comentario. Se han usado los lemas
 -- + mem_union x s t : x ∈ s ∪ t ↔ x ∈ s ∨ x ∈ t
