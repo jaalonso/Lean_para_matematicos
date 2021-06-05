@@ -1642,18 +1642,48 @@ subset_preimage_image f s
 --    f '' s ⊆ u ↔ s ⊆ f ⁻¹' u
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : f '' s ⊆ u ↔ s ⊆ f ⁻¹' u :=
 begin
   split,
   { intros h x xs,
-    have : f x ∈ f '' s,
-      from mem_image_of_mem _ xs,
-      exact h this },
-  { intros h y ymem,
-    rcases ymem with ⟨x, xs, fxeq⟩,
-    rw ← fxeq,
-    apply h xs },
+    apply mem_preimage.mpr,
+    apply h,
+    apply mem_image_of_mem,
+    exact xs, },
+  { intros h y hy,
+    rcases hy with ⟨x, xs, fxy⟩,
+    rw ← fxy,
+    exact h xs, },
 end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' s ⊆ u ↔ s ⊆ f ⁻¹' u :=
+begin
+  split,
+  { intros h x xs,
+    apply h,
+    apply mem_image_of_mem,
+    exact xs, },
+  { rintros h y ⟨x, xs, rfl⟩,
+    exact h xs, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f '' s ⊆ u ↔ s ⊆ f ⁻¹' u :=
+image_subset_iff
+
+-- 4ª demostración
+-- ===============
+
+example : f '' s ⊆ u ↔ s ⊆ f ⁻¹' u :=
+by simp
 
 -- Comentario: Se ha usado el lema
 -- + mem_image_of_mem f : x ∈ s → f x ∈ f '' s
