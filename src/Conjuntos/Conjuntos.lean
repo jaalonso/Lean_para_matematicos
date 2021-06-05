@@ -1585,12 +1585,57 @@ image_union f s t
 --    s ⊆ f ⁻¹' (f '' s)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ⊆ f ⁻¹' (f '' s) :=
+begin
+  intros x xs,
+  apply mem_preimage.mpr,
+  apply mem_image_of_mem,
+  exact xs,
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ⊆ f ⁻¹' (f '' s) :=
+begin
+  intros x xs,
+  apply mem_image_of_mem,
+  exact xs,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : s ⊆ f ⁻¹' (f '' s) :=
+λ x, mem_image_of_mem f
+
+-- 4ª demostración
+-- ===============
+
 example : s ⊆ f ⁻¹' (f '' s) :=
 begin
   intros x xs,
   show f x ∈ f '' s,
   use [x, xs],
 end
+
+-- 5ª demostración
+-- ===============
+
+example : s ⊆ f ⁻¹' (f '' s) :=
+begin
+  intros x xs,
+  use [x, xs],
+end
+
+-- 6ª demostración
+-- ===============
+
+example : s ⊆ f ⁻¹' (f '' s) :=
+subset_preimage_image f s
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 41. Demostrar que
