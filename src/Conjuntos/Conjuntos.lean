@@ -1801,18 +1801,50 @@ by simp
 --    u ⊆ f '' (f⁻¹' u)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example
   (h : surjective f)
   : u ⊆ f '' (f⁻¹' u) :=
 begin
   intros y yu,
-  rcases h y with ⟨x, fxeq⟩,
+  cases h y with x fxy,
+  use x,
+  split,
+  { apply mem_preimage.mpr,
+    rw fxy,
+    exact yu },
+  { exact fxy },
+end
+
+-- 2ª demostración
+-- ===============
+
+example
+  (h : surjective f)
+  : u ⊆ f '' (f⁻¹' u) :=
+begin
+  intros y yu,
+  cases h y with x fxy,
   use x,
   split,
   { show f x ∈ u,
-    rw fxeq,
+    rw fxy,
     exact yu },
-  { exact fxeq },
+  { exact fxy },
+end
+
+-- 3ª demostración
+-- ===============
+
+example
+  (h : surjective f)
+  : u ⊆ f '' (f⁻¹' u) :=
+begin
+  intros y yu,
+  cases h y with x fxy,
+  by finish,
 end
 
 -- ---------------------------------------------------------------------
