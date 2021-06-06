@@ -1693,12 +1693,47 @@ by simp
 --    f ⁻¹' (f '' s) ⊆ s
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example
   (h : injective f)
   : f ⁻¹' (f '' s) ⊆ s :=
 begin
-  rintros x ⟨y, ys, fxeq⟩,
-  rw ← h fxeq,
+  intros x hx,
+  rw mem_preimage at hx,
+  rw mem_image_eq at hx,
+  cases hx with y hy,
+  cases hy with ys fyx,
+  unfold injective at h,
+  have h1 : y = x := h fyx,
+  rw ← h1,
+  exact ys,
+end
+
+-- 2ª demostración
+-- ===============
+
+example
+  (h : injective f)
+  : f ⁻¹' (f '' s) ⊆ s :=
+begin
+  intros x hx,
+  rw mem_preimage at hx,
+  rcases hx with ⟨y, ys, fyx⟩,
+  rw ← h fyx,
+  exact ys,
+end
+
+-- 3ª demostración
+-- ===============
+
+example
+  (h : injective f)
+  : f ⁻¹' (f '' s) ⊆ s :=
+begin
+  rintros x ⟨y, ys, hy⟩,
+  rw ← h hy,
   exact ys,
 end
 
