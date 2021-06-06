@@ -1742,11 +1742,59 @@ end
 --    f '' (f⁻¹' u) ⊆ u
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : f '' (f⁻¹' u) ⊆ u :=
 begin
-  rintros y ⟨x, xmem, rfl⟩,
-  exact xmem,
+  intros y h,
+  cases h with x h2,
+  cases h2 with hx fxy,
+  rw ← fxy,
+  exact hx,
 end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' (f⁻¹' u) ⊆ u :=
+begin
+  intros y h,
+  rcases h with ⟨x, hx, fxy⟩,
+  rw ← fxy,
+  exact hx,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f '' (f⁻¹' u) ⊆ u :=
+begin
+  rintros y ⟨x, hx, fxy⟩,
+  rw ← fxy,
+  exact hx,
+end
+
+-- 4ª demostración
+-- ===============
+
+example : f '' (f⁻¹' u) ⊆ u :=
+begin
+  rintros y ⟨x, hx, rfl⟩,
+  exact hx,
+end
+
+-- 5ª demostración
+-- ===============
+
+example : f '' (f⁻¹' u) ⊆ u :=
+image_preimage_subset f u
+
+-- 6ª demostración
+-- ===============
+
+example : f '' (f⁻¹' u) ⊆ u :=
+by simp
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 44. Demostrar que si f es suprayectiva, entonces
