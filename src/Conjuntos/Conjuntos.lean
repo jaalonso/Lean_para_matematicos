@@ -1914,10 +1914,74 @@ image_subset f h
 --    f ⁻¹' u ⊆ f ⁻¹' v
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+begin
+  intros x hx,
+  apply mem_preimage.mpr,
+  apply h,
+  apply mem_preimage.mp,
+  exact hx,
+end
+
+-- 2ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+begin
+  intros x hx,
+  apply h,
+  exact hx,
+end
+
+-- 3ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+begin
+  intros x hx,
+  exact h hx,
+end
+
+-- 4ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+λ x hx, h hx
+
+-- 5ª demostración
+-- ===============
+
 example
   (h : u ⊆ v)
   : f ⁻¹' u ⊆ f ⁻¹' v :=
 by intro x; apply h
+
+-- 6ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+preimage_mono h
+
+-- 7ª demostración
+-- ===============
+
+example
+  (h : u ⊆ v)
+  : f ⁻¹' u ⊆ f ⁻¹' v :=
+by tauto
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 47. Demostrar que
