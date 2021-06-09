@@ -2106,13 +2106,61 @@ by simp
 --    f '' (s ∩ t) ⊆ f '' s ∩ f '' t
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : f '' (s ∩ t) ⊆ f '' s ∩ f '' t :=
 begin
-  rintros y ⟨x, ⟨xs, xt⟩, fxeq⟩ ,
+  intros y hy,
+  cases hy with x hx,
+  cases hx with xst fxy,
   split,
-  { use [x, xs, fxeq] },
-  { use [x, xt, fxeq] },
+  { use x,
+    split,
+    { exact xst.1, },
+    { exact fxy, }},
+  { use x,
+    split,
+    { exact xst.2, },
+    { exact fxy, }},
 end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' (s ∩ t) ⊆ f '' s ∩ f '' t :=
+begin
+  intros y hy,
+  rcases hy with ⟨x, ⟨xs, xt⟩, fxy⟩,
+  split,
+  { use x,
+    exact ⟨xs, fxy⟩, },
+  { use x,
+    exact ⟨xt, fxy⟩, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f '' (s ∩ t) ⊆ f '' s ∩ f '' t :=
+begin
+  rintros y ⟨x, ⟨xs, xt⟩, fxy⟩,
+  split,
+  { use [x, xs, fxy], },
+  { use [x, xt, fxy], },
+end
+
+-- 4ª demostración
+-- ===============
+
+example : f '' (s ∩ t) ⊆ f '' s ∩ f '' t :=
+image_inter_subset f s t
+
+-- 5ª demostración
+-- ===============
+
+example : f '' (s ∩ t) ⊆ f '' s ∩ f '' t :=
+by intro ; finish
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 49. Demostrar que si f es inyectiva, entonces
