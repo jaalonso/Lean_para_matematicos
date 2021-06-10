@@ -2167,21 +2167,68 @@ by intro ; finish
 --    f '' s ∩ f '' t ⊆ f '' (s ∩ t)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example
   (h : injective f)
   : f '' s ∩ f '' t ⊆ f '' (s ∩ t) :=
 begin
-  rintros y ⟨⟨x, xs, fxeq⟩, ⟨z, zt, fzeq⟩⟩,
-  use x,
+  intros y hy,
+  cases hy  with hy1 hy2,
+  cases hy1 with x1 hx1,
+  cases hx1 with x1s fx1y,
+  cases hy2 with x2 hx2,
+  cases hx2 with x2t fx2y,
+  use x1,
   split,
   { split,
-    { assumption },
-    { have hxz : x = z :=
-        (injective.eq_iff' h fzeq).mp fxeq,
-      rw hxz,
-      assumption }},
-  { assumption },
+    { exact x1s, },
+    { convert x2t,
+      apply h,
+      rw ← fx2y at fx1y,
+      exact fx1y, }},
+  { exact fx1y, },
 end
+
+-- 2ª demostración
+-- ===============
+
+example
+  (h : injective f)
+  : f '' s ∩ f '' t ⊆ f '' (s ∩ t) :=
+begin
+  rintros y ⟨⟨x1, x1s, fx1y⟩, ⟨x2, x2t, fx2y⟩⟩,
+  use x1,
+  split,
+  { split,
+    { exact x1s, },
+    { convert x2t,
+      apply h,
+      rw ← fx2y at fx1y,
+      exact fx1y, }},
+  { exact fx1y, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example
+  (h : injective f)
+  : f '' s ∩ f '' t ⊆ f '' (s ∩ t) :=
+begin
+  rintros y ⟨⟨x1, x1s, fx1y⟩, ⟨x2, x2t, fx2y⟩⟩,
+  unfold injective at h,
+  finish,
+end
+
+-- 4ª demostración
+-- ===============
+
+example
+  (h : injective f)
+  : f '' s ∩ f '' t ⊆ f '' (s ∩ t) :=
+by intro ; unfold injective at *  ; finish
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 50. Demostrar que
