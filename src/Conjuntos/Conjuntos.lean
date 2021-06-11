@@ -2235,18 +2235,59 @@ by intro ; unfold injective at *  ; finish
 --    f '' s \ f '' t ⊆ f '' (s \ t)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : f '' s \ f '' t ⊆ f '' (s \ t) :=
 begin
-  rintros y ⟨⟨x, xs, fxeq⟩, ynet⟩,
+  intros y hy,
+  cases hy with yfs ynft,
+  cases yfs with x hx,
+  cases hx with xs fxy,
   use x,
   split,
   { split,
-    { assumption },
-    { intro xt,
-      apply ynet,
-      use [x, xt, fxeq] }},
-  { assumption },
+    { exact xs, },
+    { dsimp,
+      intro xt,
+      apply ynft,
+      rw ← fxy,
+      apply mem_image_of_mem,
+      exact xt, }},
+  { exact fxy, },
 end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' s \ f '' t ⊆ f '' (s \ t) :=
+begin
+  rintros y ⟨⟨x, xs, fxy⟩, ynft⟩,
+  use x,
+  split,
+  { split,
+    { exact xs, },
+    { intro xt,
+      apply ynft,
+      use [x, xt, fxy], }},
+  { exact fxy, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f '' s \ f '' t ⊆ f '' (s \ t) :=
+begin
+  rintros y ⟨⟨x, xs, fxy⟩, ynft⟩,
+  use x,
+  finish,
+end
+
+-- 4ª demostración
+-- ===============
+
+example : f '' s \ f '' t ⊆ f '' (s \ t) :=
+subset_image_diff f s t
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 51. Demostrar que
