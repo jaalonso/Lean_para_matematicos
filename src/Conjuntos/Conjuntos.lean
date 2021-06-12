@@ -2294,14 +2294,61 @@ subset_image_diff f s t
 --    f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+begin
+  intros x hx,
+  rw mem_preimage,
+  split,
+  { rw ← mem_preimage,
+    exact hx.1, },
+  { dsimp,
+    rw ← mem_preimage,
+    exact hx.2, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+begin
+  intros x hx,
+  split,
+  { exact hx.1, },
+  { exact hx.2, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+begin
+  intros x hx,
+  exact ⟨hx.1, hx.2⟩,
+end
+
+-- 4ª demostración
+-- ===============
+
 example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
 begin
   rintros x ⟨h1, h2⟩,
-  show f x ∈ u \ v,
-  split,
-  { apply h1 },
-  { apply h2 },
+  exact ⟨h1, h2⟩,
 end
+
+-- 5ª demostración
+-- ===============
+
+example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+subset.rfl
+
+-- 6ª demostración
+-- ===============
+
+example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+by finish
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 52. Demostrar que
