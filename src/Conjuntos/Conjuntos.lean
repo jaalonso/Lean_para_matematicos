@@ -2291,7 +2291,7 @@ subset_image_diff f s t
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 51. Demostrar que
---    f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) :=
+--    f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v)
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
@@ -2355,25 +2355,92 @@ by finish
 --    (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
 example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
 begin
   ext y,
   split,
-  { rintros ⟨⟨x, xs, fxeq⟩, yv⟩,
+  { intro hy,
+    cases hy with hyfs yv,
+    cases hyfs with x hx,
+    cases hx with xs fxy,
     use x,
     split,
     { split,
-      { assumption },
-      { show f x ∈ v,
-        rw fxeq,
-        assumption }},
-    { assumption }},
-  { rintros ⟨x, ⟨xs, xv⟩, fxeq⟩,
-    use x,
-    { exact ⟨xs, fxeq⟩ },
-    { rw ← fxeq,
-      apply xv }},
+      { exact xs, },
+      { rw mem_preimage,
+        rw fxy,
+        exact yv, }},
+    { exact fxy, }},
+  { intro hy,
+    cases hy with x hx,
+    split,
+    { use x,
+      split,
+      { exact hx.1.1, },
+      { exact hx.2, }},
+    { cases hx with hx1 fxy,
+      rw ← fxy,
+      rw ← mem_preimage,
+      exact hx1.2, }},
 end
+
+-- 2ª demostración
+-- ===============
+
+example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
+begin
+  ext y,
+  split,
+  { rintros ⟨⟨x, xs, fxy⟩, yv⟩,
+    use x,
+    split,
+    { split,
+      { exact xs, },
+      { rw mem_preimage,
+        rw fxy,
+        exact yv, }},
+    { exact fxy, }},
+  { rintros ⟨x, ⟨xs, xv⟩, fxy⟩,
+    split,
+    { use [x, xs, fxy], },
+    { rw ← fxy,
+      rw ← mem_preimage,
+      exact xv, }},
+end
+
+-- 3ª demostración
+-- ===============
+
+example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
+begin
+  ext y,
+  split,
+  { rintros ⟨⟨x, xs, fxy⟩, yv⟩,
+    finish, },
+  { rintros ⟨x, ⟨xs, xv⟩, fxy⟩,
+    finish, },
+end
+
+-- 4ª demostración
+-- ===============
+
+example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
+by ext ; split ; finish
+
+-- 5ª demostración
+-- ===============
+
+example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
+by finish [ext_iff, iff_def]
+
+-- 6ª demostración
+-- ===============
+
+example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
+(set.push_pull f s v).symm
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 53. Demostrar que
