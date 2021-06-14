@@ -2444,56 +2444,47 @@ example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 53. Demostrar que
---    f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u
+--    f '' (s ∪ f ⁻¹' v) ⊆ f '' s ∪ v
 -- ----------------------------------------------------------------------
 
 -- 1ª demostración
 -- ===============
 
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+example : f '' (s ∪ f ⁻¹' v) ⊆ f '' s ∪ v :=
 begin
   intros y hy,
   cases hy with x hx,
-  use x,
-  split,
-  { exact hx.1.1, },
-  { exact hx.2, },
+  cases hx with hx1 fxy,
+  cases hx1 with xs xv,
+  { left,
+    use x,
+    split,
+    { exact xs, },
+    { exact fxy, }},
+  { right,
+    rw ← fxy,
+    exact xv, },
 end
 
 -- 2ª demostración
 -- ===============
 
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+example : f '' (s ∪ f ⁻¹' v) ⊆ f '' s ∪ v :=
 begin
-  rintros y ⟨x, hx⟩,
-  use x,
-  exact ⟨hx.1.1, hx.2⟩,
+  rintros y ⟨x, xs | xv, fxy⟩,
+  { left,
+    use [x, xs, fxy], },
+  { right,
+    rw ← fxy,
+    exact xv, },
 end
 
 -- 3ª demostración
 -- ===============
 
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+example : f '' (s ∪ f ⁻¹' v) ⊆ f '' s ∪ v :=
 begin
-  rintros y ⟨x, hx⟩,
-  use [x, hx.1.1, hx.2],
-end
-
--- 4ª demostración
--- ===============
-
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
-begin
-  rintros y ⟨x, ⟨xs, xu⟩, fxy⟩,
-  use [x, xs, fxy],
-end
-
--- 5ª demostración
--- ===============
-
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
-begin
-  rintros y ⟨x, ⟨xs, xu⟩, fxy⟩,
+  rintros y ⟨x, xs | xv, fxy⟩;
   finish,
 end
 
