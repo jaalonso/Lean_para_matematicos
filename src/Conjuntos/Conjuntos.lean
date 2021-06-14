@@ -2493,14 +2493,57 @@ end
 --    s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) :=
+begin
+  intros x hx,
+  rw mem_preimage,
+  split,
+  { apply mem_image_of_mem,
+    exact hx.1, },
+  { rw ← mem_preimage,
+    exact hx.2, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) :=
+begin
+  rintros x ⟨xs, xu⟩,
+  split,
+  { exact mem_image_of_mem f xs, },
+  { exact xu, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) :=
+begin
+  rintros x ⟨xs, xu⟩,
+  exact ⟨mem_image_of_mem f xs, xu⟩,
+end
+
+-- 4ª demostración
+-- ===============
+
 example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) :=
 begin
   rintros x ⟨xs, xu⟩,
   show f x ∈ f '' s ∩ u,
   split,
   { use [x, xs, rfl] },
-  { apply xu },
+  { exact xu },
 end
+
+-- 5ª demostración
+-- ===============
+
+example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) :=
+inter_preimage_subset s u f
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 55. Demostrar que
