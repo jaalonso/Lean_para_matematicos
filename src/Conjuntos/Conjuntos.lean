@@ -2447,13 +2447,54 @@ example : (f '' s) ∩ v = f '' (s ∩ f ⁻¹' v) :=
 --    f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+begin
+  intros y hy,
+  cases hy with x hx,
+  use x,
+  split,
+  { exact hx.1.1, },
+  { exact hx.2, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+begin
+  rintros y ⟨x, hx⟩,
+  use x,
+  exact ⟨hx.1.1, hx.2⟩,
+end
+
+-- 3ª demostración
+-- ===============
+
+example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+begin
+  rintros y ⟨x, hx⟩,
+  use [x, hx.1.1, hx.2],
+end
+
+-- 4ª demostración
+-- ===============
+
 example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
 begin
   rintros y ⟨x, ⟨xs, xu⟩, fxy⟩,
-  use x,
-  split,
-  { assumption },
-  { assumption },
+  use [x, xs, fxy],
+end
+
+-- 5ª demostración
+-- ===============
+
+example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u :=
+begin
+  rintros y ⟨x, ⟨xs, xu⟩, fxy⟩,
+  finish,
 end
 
 -- ---------------------------------------------------------------------
