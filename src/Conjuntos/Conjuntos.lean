@@ -2550,15 +2550,91 @@ inter_preimage_subset s u f
 --    s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+begin
+  intros x hx,
+  rw mem_preimage,
+  cases hx with xs xu,
+  { apply mem_union_left,
+    apply mem_image_of_mem,
+    exact xs, },
+  { apply mem_union_right,
+    rw ← mem_preimage,
+    exact xu, },
+end
+
+-- 2ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+begin
+  intros x hx,
+  cases hx with xs xu,
+  { apply mem_union_left,
+    apply mem_image_of_mem,
+    exact xs, },
+  { apply mem_union_right,
+    exact xu, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+begin
+  rintros x (xs | xu),
+  { left,
+    exact mem_image_of_mem f xs, },
+  { right,
+    exact xu, },
+end
+
+-- 4ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+begin
+  rintros x (xs | xu),
+  { exact or.inl (mem_image_of_mem f xs), },
+  { exact or.inr xu, },
+end
+
+-- 5ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+begin
+  intros x h,
+  exact or.elim h (λ xs, or.inl (mem_image_of_mem f xs)) or.inr,
+end
+
+-- 6ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+λ x h, or.elim h (λ xs, or.inl (mem_image_of_mem f xs)) or.inr
+
+-- 7ª demostración
+-- ===============
+
 example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
 begin
   rintros x (xs | xu),
   { show f x ∈ f '' s ∪ u,
     use [x, xs, rfl] },
   { show f x ∈ f '' s ∪ u,
-    apply mem_union_right,
+    right,
     apply xu },
 end
+
+-- 8ª demostración
+-- ===============
+
+example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) :=
+union_preimage_subset s u f
 
 -- Comentario: Se ha usado el lema
 -- + mem_union_right : x ∈ t → x ∈ s ∪ t
