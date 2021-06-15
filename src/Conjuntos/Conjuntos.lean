@@ -2705,13 +2705,49 @@ image_Union
 --    f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example : f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i :=
+begin
+  intros y h,
+  apply mem_Inter_of_mem,
+  intro i,
+  cases h with x hx,
+  cases hx with xIA fxy,
+  rw ← fxy,
+  apply mem_image_of_mem,
+  exact mem_Inter.mp xIA i,
+end
+
+-- 2ª demostración
+-- ===============
+
+example : f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i :=
+begin
+  intros y h,
+  apply mem_Inter_of_mem,
+  intro i,
+  rcases h with ⟨x, xIA, rfl⟩,
+  exact mem_image_of_mem f (mem_Inter.mp xIA i),
+end
+
+-- 3ª demostración
+-- ===============
+
 example : f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i :=
 begin
   intro y,
   simp,
-  intros x h fxeq i,
-  use [x, h i, fxeq],
+  intros x xIA fxy i,
+  use [x, xIA i, fxy],
 end
+
+-- 4ª demostración
+-- ===============
+
+example : f '' (⋂ i, A i) ⊆ ⋂ i, f '' A i :=
+by tidy
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 58. Demostrar que si f es inyectiva, entonces
