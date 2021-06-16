@@ -2754,6 +2754,32 @@ by tidy
 --    (⋂ i, f '' A i) ⊆ f '' (⋂ i, A i)
 -- ----------------------------------------------------------------------
 
+-- 1ª demostración
+-- ===============
+
+example
+  (i : I)
+  (injf : injective f)
+  : (⋂ i, f '' A i) ⊆ f '' (⋂ i, A i) :=
+begin
+  intros y hy,
+  rw mem_Inter at hy,
+  rcases hy i with ⟨x, xAi, fxy⟩,
+  use x,
+  split,
+  { apply mem_Inter_of_mem,
+    intro j,
+    rcases hy j with ⟨z, zAj, fzy⟩,
+    convert zAj,
+    apply injf,
+    rw fxy,
+    rw ← fzy, },
+  { exact fxy, },
+end
+
+-- 2ª demostración
+-- ===============
+
 example
   (i : I)
   (injf : injective f)
@@ -2762,16 +2788,16 @@ begin
   intro y,
   simp,
   intro h,
-  rcases h i with ⟨x, xAi, fxeq⟩,
+  rcases h i with ⟨x, xAi, fxy⟩,
   use x,
   split,
-  { intro i',
-    rcases h i' with ⟨x', x'Ai, fx'eq⟩,
-    have : f x = f x', by rw [fxeq, fx'eq],
-    have : x = x', from injf this,
+  { intro j,
+    rcases h j with ⟨z, zAi, fzy⟩,
+    have : f x = f z, by rw [fxy, fzy],
+    have : x = z, from injf this,
     rw this,
-    exact x'Ai },
-  { exact fxeq },
+    exact zAi },
+  { exact fxy },
 end
 
 -- ---------------------------------------------------------------------
