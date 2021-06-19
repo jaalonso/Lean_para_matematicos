@@ -2903,22 +2903,44 @@ by { ext, simp }
 --    ∀ f : α → set α, ¬ surjective f
 -- ----------------------------------------------------------------------
 
-theorem Cantor : ∀ f : α → set α, ¬ surjective f :=
+-- 1ª demostración
+-- ===============
+
+example : ∀ f : α → set α, ¬ surjective f :=
 begin
   intros f surjf,
   let S := {i | i ∉ f i},
-  rcases surjf S with j,
-  have h₁ : j ∉ f j,
-  { intro h',
-    have : j ∉ f j,
-      { by rwa h at h' },
-    contradiction },
-  { have h₂ : j ∈ S,
-      from h₁,
-    have h₃ : j ∉ S,
-      by rwa h at h₁,
-    contradiction},
+  unfold surjective at surjf,
+  cases surjf S with j fjS,
+  by_cases j ∈ S,
+  { apply absurd _ h,
+    rw fjS,
+    exact h, },
+  { apply h,
+    rw ← fjS at h,
+    exact h, },
 end
+
+-- 2ª demostración
+-- ===============
+
+example : ∀ f : α → set α, ¬ surjective f :=
+begin
+  intros f surjf,
+  let S := {i | i ∉ f i},
+  cases surjf S with j fjS,
+  by_cases j ∈ S,
+  { apply absurd _ h,
+    rwa fjS, },
+  { apply h,
+    rwa ← fjS at h, },
+end
+
+-- 3ª demostración
+-- ===============
+
+example : ∀ f : α → set α, ¬ surjective f :=
+cantor_surjective
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 62. Cerrar la sesión function_variables
