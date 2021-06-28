@@ -7,22 +7,22 @@ import tactic.basic
 ------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Abrir la teoría de los naturales. 
+-- Ejercicio. Abrir la teoría de los naturales.
 -- ----------------------------------------------------------------------
 
 open nat
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Permitir en esta teoría definiciones no computables. 
+-- Ejercicio. Permitir en esta teoría definiciones no computables.
 -- ----------------------------------------------------------------------
 
-noncomputable theory 
+noncomputable theory
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Permitir el uso de la lógica clásica. 
+-- Ejercicio. Permitir el uso de la lógica clásica.
 -- ----------------------------------------------------------------------
 
-open_locale classical 
+open_locale classical
 
 ------------------------------------------------------------------------
 -- § Estructuras y clases                                             --
@@ -35,7 +35,7 @@ open_locale classical
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir la estructura even_natural_number con dos campos
 -- + n que es un número natural
--- + even_n que es una demostración de que n es par. 
+-- + even_n que es una demostración de que n es par.
 -- ----------------------------------------------------------------------
 
 structure even_natural_number : Type :=
@@ -43,7 +43,7 @@ structure even_natural_number : Type :=
   (even_n : even n)
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Ver la información de even_natural_number 
+-- Ejercicio. Ver la información de even_natural_number
 -- ----------------------------------------------------------------------
 
 #print even_natural_number
@@ -59,11 +59,11 @@ structure even_natural_number : Type :=
 -- campos son
 -- + even con una demostración de que n es par
 -- + is_cube con una demostración de que n es un cubo y
--- + gt_100 con una demostración de que n es mayor que 100. 
+-- + gt_100 con una demostración de que n es mayor que 100.
 -- ----------------------------------------------------------------------
 
 structure is_even_cube_above_100 (n : ℕ) : Prop :=
-  (even : evens n)
+  (even : even n)
   (is_cube : ∃ k, n = k^3)
   (gt_100 : n > 100)
 
@@ -76,18 +76,18 @@ structure is_even_cube_above_100 (n : ℕ) : Prop :=
 -- Comentario: Al colocar el cursor sobre print se obtiene
 --    structure is_even_cube_above_100 : ℕ → Prop
 --    fields:
---    is_even_cube_above_100.even : 
+--    is_even_cube_above_100.even :
 ---     ∀ {n : ℕ}, is_even_cube_above_100 n → n.even
---    is_even_cube_above_100.is_cube : 
+--    is_even_cube_above_100.is_cube :
 --      ∀ {n : ℕ}, is_even_cube_above_100 n → (∃ (k : ℕ), n = k ^ 3)
---    is_even_cube_above_100.gt_100 : 
+--    is_even_cube_above_100.gt_100 :
 --      ∀ {n : ℕ}, is_even_cube_above_100 n → n > 100
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir las estructuras (bound f) cuyo argumento es una
--- función de ℕ en ℕ y sus camposson
+-- función de ℕ en ℕ y sus campos son
 -- + bound que es un número natural
--- + le_bound que es una prueba de que bound es una cota superior de f. 
+-- + le_bound que es una prueba de que bound es una cota superior de f.
 -- ----------------------------------------------------------------------
 
 structure bounds (f : ℕ → ℕ) :=
@@ -117,10 +117,9 @@ structure eventually_constant_sequence : Type :=
 (seq : ℕ → ℕ)
 (eventually_constant : ∃ k v, ∀ n ≥ k, seq n = v)
 
-
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir la estructura bipointed_type de los tipos don dos
--- elementos distintos.   
+-- elementos distintos.
 -- ----------------------------------------------------------------------
 
 structure bipointed_type :=
@@ -139,25 +138,25 @@ structure bipointed_type :=
 -- entonces n es mayor que 100.
 -- ----------------------------------------------------------------------
 
--- 1ª demostración 
+-- 1ª demostración
 -- ===============
 
-example 
-  (n : ℕ) 
-  (hn : is_even_cube_above_100 n) 
+example
+  (n : ℕ)
+  (hn : is_even_cube_above_100 n)
   : n > 100 :=
 is_even_cube_above_100.gt_100 hn
 
--- 1ª demostración 
+-- 2ª demostración
 -- ===============
 
 section
 
 open is_even_cube_above_100
 
-example 
-  (n : ℕ) 
-  (hn : is_even_cube_above_100 n) 
+example
+  (n : ℕ)
+  (hn : is_even_cube_above_100 n)
   : n > 100 :=
 gt_100 hn
 
@@ -169,9 +168,9 @@ end
 -- entonces n es par.
 -- ----------------------------------------------------------------------
 
-example 
-  (n : ℕ) 
-  (hn : is_even_cube_above_100 n) 
+example
+  (n : ℕ)
+  (hn : is_even_cube_above_100 n)
   : even n :=
 hn.even
 
@@ -181,9 +180,9 @@ hn.even
 -- entonces n es par y cubo.
 -- ----------------------------------------------------------------------
 
-example 
-  (n : ℕ) 
-  (hn : is_even_cube_above_100 n) 
+example
+  (n : ℕ)
+  (hn : is_even_cube_above_100 n)
   : even n ∧ ∃ k, n = k^3 :=
 ⟨ hn.even, hn.is_cube ⟩
 
@@ -193,18 +192,17 @@ example
 -- entonces n es par, mayor que 100 y cubo.
 -- ----------------------------------------------------------------------
 
-example 
-  (n : ℕ) 
-  (hn : is_even_cube_above_100 n) 
+example
+  (n : ℕ)
+  (hn : is_even_cube_above_100 n)
   : even n ∧ n > 100 ∧ (∃ k, n = k^3) :=
 ⟨ hn.1, hn.3, hn.2 ⟩
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir la función
 --    is_even_cube_above_100' : ℕ → Prop
 -- tal que 8is_even_cube_above_100') afirma que n es par, cubo y mayor
--- que 100. 
+-- que 100.
 -- ----------------------------------------------------------------------
 
 def is_even_cube_above_100' (n : ℕ) : Prop :=
@@ -220,7 +218,7 @@ def even_natural_number' : Type :=
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir el conjunto set_of_even_natural_numbers de los
--- números naturales pares. 
+-- números naturales pares.
 -- ----------------------------------------------------------------------
 
 def set_of_even_natural_numbers : set ℕ :=
@@ -231,15 +229,61 @@ def set_of_even_natural_numbers : set ℕ :=
 --    even_natural_number → even_natural_number'
 -- ----------------------------------------------------------------------
 
+-- ?ª demostración
+-- ===============
+
+example : even_natural_number → even_natural_number' :=
+begin
+  intro h,
+  cases h with n hn,
+  use n,
+  exact hn,
+end
+
+-- 2ª demostración
+-- ===============
+
 example : even_natural_number → even_natural_number' :=
 λ n, ⟨n.1, n.2⟩
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Demostrar que, parado todo natural n,
+-- Ejercicio. Demostrar que, para todo natural n,
 --    is_even_cube_above_100 n → is_even_cube_above_100' n
 -- ----------------------------------------------------------------------
 
-example (n : ℕ) : is_even_cube_above_100 n → is_even_cube_above_100' n :=
+-- 1ª demostración
+-- ===============
+
+example
+  (n : ℕ)
+  : is_even_cube_above_100 n → is_even_cube_above_100' n :=
+begin
+  intro hn,
+  cases hn with neven ncube ngt,
+  split,
+  { exact neven, },
+  { split,
+    { exact ncube, },
+    { exact ngt, }},
+end
+
+-- 2ª demostración
+-- ===============
+
+example
+  (n : ℕ)
+  : is_even_cube_above_100 n → is_even_cube_above_100' n :=
+begin
+  rintros ⟨neven, ncube, ngt⟩,
+  exact ⟨neven, ncube, ngt⟩,
+end
+
+-- 3ª demostración
+-- ===============
+
+example
+  (n : ℕ)
+  : is_even_cube_above_100 n → is_even_cube_above_100' n :=
 λ hn, ⟨hn.even, hn.is_cube, hn.gt_100⟩
 
 -- ---------------------------------------------------------------------
@@ -265,8 +309,8 @@ example : even_natural_number' → even_natural_number :=
 --    is_even_cube_above_100' n → is_even_cube_above_100 n
 -- ----------------------------------------------------------------------
 
-example 
-  (n : ℕ) 
+example
+  (n : ℕ)
   : is_even_cube_above_100' n → is_even_cube_above_100 n :=
 λ ⟨h1n, h2n, h3n⟩,
 { even    := h1n,
@@ -287,18 +331,18 @@ def bounds' (f : ℕ → ℕ) : Type :=
 --    bounds f → bounds' f
 -- ----------------------------------------------------------------------
 
-example 
-  (f : ℕ → ℕ) 
+example
+  (f : ℕ → ℕ)
   : bounds f → bounds' f :=
-λ ⟨n, hn⟩, ⟨n, hn⟩ 
+λ ⟨n, hn⟩, ⟨n, hn⟩
 
 -- ----------------------------------------------------------------------
 -- Ejercicio. Demostrar que para toda f,
 --    bounds' f → bounds f
 -- ----------------------------------------------------------------------
 
-example 
-  (f : ℕ → ℕ) 
+example
+  (f : ℕ → ℕ)
   : bounds' f → bounds f :=
 λ n, { bound := n.1, le_bound := n.2 }
 
@@ -312,19 +356,21 @@ example
 -- tal que (is_square n) si n es un cuadrado.
 -- ----------------------------------------------------------------------
 
-@[class] def is_square (n : ℕ) : Prop := ∃k : ℕ, k^2 = n
+@[class]
+def is_square (n : ℕ) : Prop :=
+  ∃k : ℕ, k^2 = n
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Iniciar el espacio de nombres is_square. 
+-- Ejercicio. Iniciar el espacio de nombres is_square.
 -- ----------------------------------------------------------------------
 
 namespace is_square
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir la función 
---    sqrt : ℕ → ℕ 
--- yal que, si n es un número cuadrado, entonces (sqrt n) es su raíz
--- cuadrada. 
+-- Ejercicio. Definir la función
+--    sqrt : ℕ → ℕ
+-- tal que, si n es un número cuadrado, entonces (sqrt n) es su raíz
+-- cuadrada.
 -- ----------------------------------------------------------------------
 
 def sqrt (n : ℕ) [hn : is_square n] : ℕ := classical.some hn
@@ -333,10 +379,10 @@ def sqrt (n : ℕ) [hn : is_square n] : ℕ := classical.some hn
 -- + classical.some : (∃ (x : ℕ), p x) → ℕ [2 times]
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir √ como notación para la raíz cuadrada.  
+-- Ejercicio. Definir √ como notación para la raíz cuadrada.
 -- ----------------------------------------------------------------------
 
-prefix `√`:(max+1) := sqrt 
+prefix `√`:(max+1) := sqrt
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si n es un cuadrado, entonces
@@ -344,14 +390,14 @@ prefix `√`:(max+1) := sqrt
 -- y declararlo como regla de simplificación
 -- ----------------------------------------------------------------------
 
-@[simp] lemma square_sqrt 
-  (n : ℕ) 
-  [hn : is_square n] 
+@[simp] lemma square_sqrt
+  (n : ℕ)
+  [hn : is_square n]
   : (√n) ^ 2 = n :=
 classical.some_spec hn
 
 -- Comentario: Se ha usado el lema
--- + classical.some_spec : ∀ (h : ∃ (x : ℕ), p x), p (classical.some h) 
+-- + classical.some_spec : ∀ (h : ∃ (x : ℕ), p x), p (classical.some h)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si n es un número cuadrado, entonces
@@ -362,11 +408,11 @@ classical.some_spec hn
 -- ===============
 
 example
-  (n k : ℕ) 
-  [is_square n] 
+  (n k : ℕ)
+  [is_square n]
   : √n = k ↔ n = k^2 :=
 begin
-  split, 
+  split,
   { intro h,
     rw ← h,
     exact (square_sqrt n).symm },
@@ -376,19 +422,19 @@ begin
 end
 
 -- Comentario: Se usan los lemas
--- + pow_left_inj : 0 ≤ x → 0 ≤ y → 0 < n → x ^ n = y ^ n → x = y 
--- + zero_le : ∀ (n : ℕ), 0 ≤ n 
+-- + pow_left_inj : 0 ≤ x → 0 ≤ y → 0 < n → x ^ n = y ^ n → x = y
+-- + zero_le : ∀ (n : ℕ), 0 ≤ n
 -- + two_pos : 0 < 2
 
 -- 2ª demostración
 -- ===============
 
-@[simp] lemma sqrt_eq_iff 
-  (n k : ℕ) 
-  [is_square n] 
+@[simp] lemma sqrt_eq_iff
+  (n k : ℕ)
+  [is_square n]
   : √n = k ↔ n = k^2 :=
 begin
-  split; 
+  split;
   intro h,
   { simp [← h] },
   { exact pow_left_inj (nat.zero_le _) (nat.zero_le k) two_pos (by simp [h]) }
@@ -399,8 +445,8 @@ end
 -- instancia (para aplicarlo directamente en las inferencias de clases).
 -- ----------------------------------------------------------------------
 
-instance square_square 
-  (n : ℕ) 
+instance square_square
+  (n : ℕ)
   : is_square (n^2) :=
 ⟨n, rfl⟩
 
@@ -409,8 +455,8 @@ instance square_square
 --    √(n ^ 2) 0 n
 -- ----------------------------------------------------------------------
 
-lemma sqrt_square 
-  (n : ℕ) 
+lemma sqrt_square
+  (n : ℕ)
   : √(n ^ 2) = n :=
 by simp
 
@@ -420,9 +466,9 @@ by simp
 -- ----------------------------------------------------------------------
 
 example
-  (n m : ℕ) 
-  [is_square n] 
-  [is_square m] 
+  (n m : ℕ)
+  [is_square n]
+  [is_square m]
   : is_square (n*m) :=
 begin
   use (√n * √m),
@@ -452,10 +498,10 @@ no goals
 -- 2ª demostración
 -- ===============
 
-instance square_mul 
-  (n m : ℕ) 
-  [is_square n] 
-  [is_square m] 
+instance square_mul
+  (n m : ℕ)
+  [is_square n]
+  [is_square m]
   : is_square (n*m) :=
 ⟨√n * √m, by simp [nat.mul_pow]⟩
 
@@ -464,10 +510,10 @@ instance square_mul
 --    √(n * m) = √n * √m
 -- ----------------------------------------------------------------------
 
-lemma sqrt_mul 
-  (n m : ℕ) 
-  [is_square n] 
-  [is_square m] 
+lemma sqrt_mul
+  (n m : ℕ)
+  [is_square n]
+  [is_square m]
   : √(n * m) = √n * √m :=
 by simp [nat.mul_pow]
 
@@ -476,9 +522,9 @@ by simp [nat.mul_pow]
 --    √(n * m ^ 2) = √n * m
 -- ----------------------------------------------------------------------
 
-example 
-  (n m : ℕ) 
-  [is_square n] 
+example
+  (n m : ℕ)
+  [is_square n]
   : √(n * m ^ 2) = √n * m :=
 by simp [sqrt_mul, sqrt_square]
 
@@ -487,58 +533,58 @@ by simp [sqrt_mul, sqrt_square]
 --    √n ≤ n
 -- ----------------------------------------------------------------------
 
-lemma sqrt_le 
-  (n : ℕ) 
-  [is_square n] 
+lemma sqrt_le
+  (n : ℕ)
+  [is_square n]
   : √n ≤ n :=
 begin
-  conv_rhs { rw [← square_sqrt n, nat.pow_two] }, 
+  conv_rhs { rw [← square_sqrt n, nat.pow_two] },
              apply nat.le_mul_self
 end
 
 -- Comentario: Se han usado los lemas
 -- + nat.le_mul_self : n ≤ n * n
--- + nat.pow_two : n ^ 2 = n * n 
+-- + nat.pow_two : n ^ 2 = n * n
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar el espacio de nombres is_square. 
+-- Ejercicio. Cerrar el espacio de nombres is_square.
 -- ----------------------------------------------------------------------
 
 end is_square
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Iniciar la sección bijections. 
+-- Ejercicio. Iniciar la sección bijections.
 -- ----------------------------------------------------------------------
 
 section bijections
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Abrir la teoría function. 
+-- Ejercicio. Abrir la teoría function.
 -- ----------------------------------------------------------------------
 
 open function
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar α y β como variables de tipo. 
+-- Ejercicio. Declarar α y β como variables de tipo.
 -- ----------------------------------------------------------------------
 
 variables {α β : Type*}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Obtener la información de la estructura equiv. 
+-- Ejercicio. Obtener la información de la estructura equiv.
 -- ----------------------------------------------------------------------
 
 #print equiv
 
 -- Comentario: Al colocar el cursor sobre print se obtiene
---    structure equiv : 
+--    structure equiv :
 --      Sort u_1 → Sort u_2 → Sort (max 1 (imax u_1 u_2) (imax u_2 u_1))
 --    fields:
 --    equiv.to_fun : Π {α : Sort u_1} {β : Sort u_2}, α ≃ β → α → β
 --    equiv.inv_fun : Π {α : Sort u_1} {β : Sort u_2}, α ≃ β → β → α
---    equiv.left_inv : ∀ {α : Sort u_1} {β : Sort u_2} (c : α ≃ β), 
+--    equiv.left_inv : ∀ {α : Sort u_1} {β : Sort u_2} (c : α ≃ β),
 --                     left_inverse c.inv_fun c.to_fun
---    equiv.right_inv : ∀ {α : Sort u_1} {β : Sort u_2} (c : α ≃ β), 
+--    equiv.right_inv : ∀ {α : Sort u_1} {β : Sort u_2} (c : α ≃ β),
 --                      right_inverse c.inv_fun c.to_fun
 --
 -- Su definición es
@@ -568,29 +614,29 @@ instance : has_coe_to_fun (bijection α β) :=
 ⟨_, λ f, f.to_fun⟩
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Ampliar la táctica de extensionalidad a las biyecciones. 
+-- Ejercicio. Ampliar la táctica de extensionalidad a las biyecciones.
 -- ----------------------------------------------------------------------
 
-@[ext] 
-def bijection.ext 
-  {f g : bijection α β} 
-  (hfg : ∀ x, f x = g x) 
+@[ext]
+def bijection.ext
+  {f g : bijection α β}
+  (hfg : ∀ x, f x = g x)
   : f = g :=
 by { cases f, cases g, congr, ext, exact hfg x }
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar el lema coe_mk para reducir la aplicación de una
--- biyección a un argumento. 
+-- biyección a un argumento.
 -- ----------------------------------------------------------------------
 
-@[simp] 
-lemma coe_mk 
-  {f : α → β} 
-  {h1f : injective f} 
-  {h2f : surjective f} 
-  {x : α} 
-  : { bijection . to_fun := f, 
-      injective := h1f, 
+@[simp]
+lemma coe_mk
+  {f : α → β}
+  {h1f : injective f}
+  {h2f : surjective f}
+  {x : α}
+  : { bijection . to_fun := f,
+      injective := h1f,
       surjective := h2f } x = f x :=
  rfl
 
@@ -608,7 +654,7 @@ end
 -- ---------------------------------------------------------------------
 -- Ejercicio. Definir bijection_of_equiv tal que si f es una
 -- equivalencia entre α y β, entonces (bijection_of_equiv f) es una
--- biyección de α en β. 
+-- biyección de α en β.
 -- ----------------------------------------------------------------------
 
 def bijection_of_equiv (f : α ≃ β) : bijection α β :=
@@ -618,15 +664,15 @@ def bijection_of_equiv (f : α ≃ β) : bijection α β :=
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que las biyecciones son equivalentes a las
--- equivalencias. 
+-- equivalencias.
 -- ----------------------------------------------------------------------
 
 def bijection_equiv_equiv : bijection α β ≃ (α ≃ β) :=
 { to_fun := equiv_of_bijection,
   inv_fun := bijection_of_equiv,
-  left_inv := 
+  left_inv :=
     by { intro f, ext, simp [bijection_of_equiv, equiv_of_bijection] },
-  right_inv := 
+  right_inv :=
     by { intro f, ext, simp [bijection_of_equiv, equiv_of_bijection] } }
 
 -- ---------------------------------------------------------------------
@@ -635,18 +681,10 @@ def bijection_equiv_equiv : bijection α β ≃ (α ≃ β) :=
 
 end bijections
 
-
-
-/-! ### Exercise: Bundled groups -/
-
-/-! Below is a possible definition of a group in Lean.
-  It's not the definition we use use in mathlib. The actual definition uses classes,
-  and will be explained in detail in the next session. -/
-
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir la estructura Group que tiene 
---    + universo: G, 
---    + operación interna: op (representada por *) 
+-- Ejercicio. Definir la estructura Group que tiene
+--    + universo: G,
+--    + operación interna: op (representada por *)
 --    + elemento neutro por la izquierda: id (representado por 1)
 --    + inverso por la izquierda inv (representado por ⁻¹)
 -- y verifica los axiomas
@@ -658,15 +696,15 @@ end bijections
 structure Group :=
   (G : Type*)
   (op : G → G → G) (infix *    := op)
-  (id : G)         (notation 1 := id) 
-  (inv : G → G)    (postfix ⁻¹ := inv) 
+  (id : G)         (notation 1 := id)
+  (inv : G → G)    (postfix ⁻¹ := inv)
   (op_assoc' : ∀ (x y z : G), (x * y) * z = x * (y * z))
   (id_op' : ∀ (x : G), 1 * x = x)
   (op_left_inv' : ∀ (x : G), x⁻¹ * x = 1)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Extender la estructura Group a CommGroup de los grupos
--- conmutativos.  
+-- conmutativos.
 -- ----------------------------------------------------------------------
 
 structure CommGroup extends Group :=
@@ -674,12 +712,12 @@ structure CommGroup extends Group :=
   (op_comm : ∀ (x y : G), x * y = y * x)
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir el grupo aditivo de los racionales. 
+-- Ejercicio. Definir el grupo aditivo de los racionales.
 -- ----------------------------------------------------------------------
 
 def rat_Group : Group :=
 { G := ℚ,
-  op := (+), 
+  op := (+),
   id := 0,
   inv := λ x, -x,
   op_assoc' := add_assoc,
@@ -688,28 +726,28 @@ def rat_Group : Group :=
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Extender el grupo aditivo de los racionales a grupo
--- conmutativo.  
+-- conmutativo.
 -- ----------------------------------------------------------------------
 
 def rat_CommGroup : CommGroup :=
-{ G := ℚ, 
-  op_comm := add_comm, 
+{ G := ℚ,
+  op_comm := add_comm,
   ..rat_Group }
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Iniciar el espacio de nombres Group 
+-- Ejercicio. Iniciar el espacio de nombres Group
 -- ----------------------------------------------------------------------
 
 namespace Group
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar G como una variable sobre grupos. 
+-- Ejercicio. Declarar G como una variable sobre grupos.
 -- ----------------------------------------------------------------------
 
 variables {G : Group}
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar los grupos como instancias de tipos. 
+-- Ejercicio. Declarar los grupos como instancias de tipos.
 -- ----------------------------------------------------------------------
 
 instance : has_coe_to_sort Group := ⟨_, Group.G⟩
@@ -718,7 +756,7 @@ instance : has_coe_to_sort Group := ⟨_, Group.G⟩
 -- Ejercicio. Declarar que G tiene
 --    + multiplicación: op (o *)
 --    + neutro: id (o 1)
---    + inverso: inv (o ⁻¹) 
+--    + inverso: inv (o ⁻¹)
 -- ----------------------------------------------------------------------
 
 instance : has_mul G := ⟨G.op⟩
@@ -729,24 +767,24 @@ instance : has_inv G := ⟨G.inv⟩
 -- Ejercicio. Demostrar que G cumple los axiomas de grupo.
 -- ----------------------------------------------------------------------
 
-lemma op_assoc 
-  (x y z : G) 
-  : (x * y) * z = x * (y * z) := 
+lemma op_assoc
+  (x y z : G)
+  : (x * y) * z = x * (y * z) :=
 G.op_assoc' x y z
 
-lemma id_op 
-  (x : G) 
-  : 1 * x = x := 
+lemma id_op
+  (x : G)
+  : 1 * x = x :=
 G.id_op' x
 
-lemma op_left_inv 
-  (x : G) 
-  : x⁻¹ * x = 1 := 
+lemma op_left_inv
+  (x : G)
+  : x⁻¹ * x = 1 :=
   G.op_left_inv' x
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Demostrar que si G es un grupo y x es un elemento de G,
--- entonces 
+-- entonces
 --    x * x = x → x = 1
 -- ----------------------------------------------------------------------
 
@@ -754,11 +792,11 @@ lemma op_left_inv
 -- ===============
 
 example
-  {G : Group} 
-  {x : G} 
+  {G : Group}
+  {x : G}
   : x * x = x → x = 1 :=
 begin
-  intro hx, 
+  intro hx,
   rw ← id_op x,
   rw ← op_left_inv x,
   rw op_assoc,
@@ -772,7 +810,7 @@ end
 G : Group,
 x : ↥G
 ⊢ x * x = x → x = 1
-  >> intro hx, 
+  >> intro hx,
 hx : x * x = x
 ⊢ x = 1
   >> rw ← id_op x,
@@ -788,12 +826,12 @@ no goals
 -- 2ª demostración
 -- ===============
 
-lemma eq_id_of_op_eq_self 
-  {G : Group} 
-  {x : G} 
+lemma eq_id_of_op_eq_self
+  {G : Group}
+  {x : G}
   : x * x = x → x = 1 :=
 begin
-  intro hx, 
+  intro hx,
   rw [← id_op x, ← op_left_inv x, op_assoc, hx]
 end
 
@@ -805,8 +843,8 @@ end
 -- ===============
 
 example
-  {G : Group} 
-  (x : G) 
+  {G : Group}
+  (x : G)
   : x * x⁻¹ = 1 :=
 begin
   apply eq_id_of_op_eq_self,
@@ -838,9 +876,9 @@ no goals
 -- 2ª demostración
 -- ===============
 
-lemma op_right_inv 
-  {G : Group} 
-  (x : G) 
+lemma op_right_inv
+  {G : Group}
+  (x : G)
   : x * x⁻¹ = 1 :=
 begin
   apply eq_id_of_op_eq_self,
@@ -855,13 +893,13 @@ end
 -- ===============
 
 example
-  {G : Group} 
-  (x : G) 
+  {G : Group}
+  (x : G)
   : x * 1 = x :=
 begin
-  rw ← op_left_inv x, 
-  rw ← op_assoc, 
-  rw op_right_inv, 
+  rw ← op_left_inv x,
+  rw ← op_assoc,
+  rw op_right_inv,
   rw id_op,
 end
 
@@ -872,11 +910,11 @@ end
 G : Group,
 x : ↥G
 ⊢ x * 1 = x
-  >> rw ← op_left_inv x, 
+  >> rw ← op_left_inv x,
 ⊢ x * (x⁻¹ * x) = x
   >> rw ← op_assoc,
-⊢ (x * x⁻¹) * x = x 
-  >> rw op_right_inv, 
+⊢ (x * x⁻¹) * x = x
+  >> rw op_right_inv,
 ⊢ 1 * x = x
   >> rw id_op,
 no goals
@@ -885,14 +923,14 @@ no goals
 -- 2ª demostración
 -- ===============
 
-lemma op_id 
-  {G : Group} 
-  (x : G) 
+lemma op_id
+  {G : Group}
+  (x : G)
   : x * 1 = x :=
 by rw [← op_left_inv x, ← op_assoc, op_right_inv, id_op]
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir el producto cartesiano de dos grupos. 
+-- Ejercicio. Definir el producto cartesiano de dos grupos.
 -- ----------------------------------------------------------------------
 
 def prod_Group (G₁ G₂ : Group) : Group :=
@@ -905,7 +943,7 @@ def prod_Group (G₁ G₂ : Group) : Group :=
   op_left_inv' := by { intros, ext; simp; rw [op_left_inv] } }
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Cerrar el espacio de nombres Group 
+-- Ejercicio. Cerrar el espacio de nombres Group
 -- ----------------------------------------------------------------------
 
 end Group
@@ -921,13 +959,13 @@ structure pointed_type :=
 (point : type)
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Empezar el espacio de nombre pointed_type. 
+-- Ejercicio. Empezar el espacio de nombre pointed_type.
 -- ----------------------------------------------------------------------
 
 namespace pointed_type
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Declarar A y B como variables sobre pointed_type 
+-- Ejercicio. Declarar A y B como variables sobre pointed_type
 -- ----------------------------------------------------------------------
 
 variables {A B : pointed_type}
@@ -939,7 +977,7 @@ variables {A B : pointed_type}
 instance : has_coe_to_sort pointed_type := ⟨_, pointed_type.type⟩
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir el poructo de pointed_type. 
+-- Ejercicio. Definir el poructo de pointed_type.
 -- ----------------------------------------------------------------------
 
 @[simps point]
@@ -948,10 +986,10 @@ def prod (A B : pointed_type) : pointed_type :=
   point := (A.point, B.point) }
 
 -- Comentario: El atributo @[simps point] indica que se puede despelgar
--- la definición. 
+-- la definición.
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Terminar el espacio de nombres de pointed_type. 
+-- Ejercicio. Terminar el espacio de nombres de pointed_type.
 -- ----------------------------------------------------------------------
 
 end pointed_type
@@ -1107,4 +1145,4 @@ end pointed_map
 -- Basado en la teoría structures.lean de Floris van Doorn que se
 -- encuentra en https://bit.ly/39s7AwF y se comenta en los vídeos
 -- "Structures and Classes" que se encuentra en
--- https://youtu.be/xYenPIeX6MY 
+-- https://youtu.be/xYenPIeX6MY
