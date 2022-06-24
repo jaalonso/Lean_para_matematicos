@@ -1,10 +1,20 @@
-import data.rat.basic
-import data.nat.parity
-import tactic.basic
+-- Estructuras y clases
+-- =====================================================================
+
 
 ------------------------------------------------------------------------
 -- § Introducción                                                     --
 ------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio. Importar las teorías data.rat.basic, data.nat.parity y
+-- tactic.basic.
+-- ---------------------------------------------------------------------
+
+
+import data.rat.basic
+import data.nat.parity
+import tactic.basic
 
 -- ---------------------------------------------------------------------
 -- Ejercicio. Abrir la teoría de los naturales.
@@ -126,7 +136,6 @@ structure bipointed_type :=
 (A : Type)
 (x y : A)
 (x_ne_y : x ≠ y)
--- omit
 
 ------------------------------------------------------------------------
 -- § Proyecciones de una estructura                                   --
@@ -229,7 +238,7 @@ def set_of_even_natural_numbers : set ℕ :=
 --    even_natural_number → even_natural_number'
 -- ----------------------------------------------------------------------
 
--- ?ª demostración
+-- 1ª demostración
 -- ===============
 
 example : even_natural_number → even_natural_number' :=
@@ -977,7 +986,7 @@ variables {A B : pointed_type}
 instance : has_coe_to_sort pointed_type := ⟨_, pointed_type.type⟩
 
 -- ---------------------------------------------------------------------
--- Ejercicio. Definir el poructo de pointed_type.
+-- Ejercicio. Definir el producto de pointed_type.
 -- ----------------------------------------------------------------------
 
 @[simps point]
@@ -985,7 +994,7 @@ def prod (A B : pointed_type) : pointed_type :=
 { type := A × B,
   point := (A.point, B.point) }
 
--- Comentario: El atributo @[simps point] indica que se puede despelgar
+-- Comentario: El atributo @[simps point] indica que se puede desplegar
 -- la definición.
 
 -- ---------------------------------------------------------------------

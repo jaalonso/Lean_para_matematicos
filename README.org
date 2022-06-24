@@ -3,7 +3,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./estilo.css" />
 #+LATEX_CLASS: book-noparts
 #+LATEX_CLASS_OPTIONS: [a4paper,12pt,twoside]
-
+ 
 * Contenido                                                             :TOC:
 - [[#introducción][Introducción]]
 - [[#introducción-a-las-matemáticas-en-lean][Introducción a las matemáticas en Lean]]
@@ -12,6 +12,7 @@
 - [[#conjuntos][Conjuntos]]
 - [[#estructuras-y-clases][Estructuras y clases]]
 - [[#estructuras-algebraicas][Estructuras algebraicas]]
+- [[#espacios-topológicos][Espacios topológicos]]
 - [[#infinitud-de-los-primos][Infinitud de los primos]]
 - [[#metaprogramación][Metaprogramación]]
 
@@ -72,10 +73,19 @@ Lean. Está disponible el [[https://youtu.be/xYenPIeX6MY][vídeo]] y la [[https:
 * Estructuras algebraicas
 
 En esta sesión [[https://www.imperial.ac.uk/people/k.buzzard][Kevin Buzzard]] presenta cómo trabajar en Lean con estructuras
-algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQPAtiTY][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/exercises_sources/wednesday/afternoon/algebraic_hierarchy.lean][teoría]].
+algebraicas (grupos, anillos, ...). Está disponible el [[https://youtu.be/ATlAQPAtiTY][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/solutions/wednesday/algebraic_hierarchy.lean][teoría]].
 
 + [[./src/Estructuras_algebraicas.lean][Estructuras algebraicas]]
 #+INCLUDE: "./src/Estructuras_algebraicas.lean" src lean
+
+* Espacios topológicos
+
+En esta sesión Alex J. Best presenta cómo trabajar en Lean con espacios
+topológicos. Está disponible el [[https://youtu.be/RTfjSlwbKjQ][vídeo]] y la [[https://github.com/leanprover-community/lftcm2020/blob/master/src/solutions/wednesday/topological_spaces.lean][teoría]].
+
++ [[./src/Espacios_topologicos.lean][Espacios topológicos]]
+#+INCLUDE: "./src/Espacios_topologicos.lean" src lean
+
 
 
 

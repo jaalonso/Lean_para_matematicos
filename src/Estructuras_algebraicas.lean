@@ -1,3 +1,6 @@
+-- Estructuras algebraicas
+-- =====================================================================
+
 -- ---------------------------------------------------------------------
 -- Ejercicio. Importar las librerías
 -- + data.rat.basic (que contiene los números racionales) y
